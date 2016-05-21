@@ -1,0 +1,69 @@
+
+<div class="modal-header">
+    <div class="modal-title">Register</div>
+</div>
+<div class="modal-body">
+    <form name="regForm">
+    <div class="row ">
+        <div class="col-lg-10 col-center-block " >
+            <div class="form-group register-form-group" ng-class="{'has-error': reg.unameErr, 'has-feedback': reg.unameErr}">
+
+                <input type="text" class="form-control login-field margin-space-sm " name="username"
+                        placeholder="Username" ng-model="reg.username" ng-blur="reg.check(0)" autocomplete="off"/>
+
+                <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="reg.unameErr"></span>
+                <div class="input-tip" ><span >{{reg.unameMsg}}&nbsp;</span></div>
+                <!--<div class="input-tip" ng-hide="reg.unameErr"><span >&nbsp;</span></div>-->
+
+            </div>
+        </div>
+        <div class="col-lg-10 col-center-block">
+
+            <div class="form-group register-form-group" ng-class="{'has-error': reg.passErr, 'has-feedback': reg.passErr}">
+                <input type="password" class="form-control login-field margin-space-sm" name="password"
+                        placeholder="Password" ng-model="reg.password" ng-blur="reg.check(1)" autocomplete="off"/>
+
+                <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="reg.passErr"></span>
+                <div class="input-tip"><span >{{reg.passMsg}}&nbsp;</span></div>
+                <!--<div class="input-tip" ng-hide="reg.passErr"><span >&nbsp;</span></div>-->
+
+            </div>
+        </div>
+        <div class="col-lg-10 col-center-block">
+
+            <div class="form-group register-form-group" ng-class="{'has-error': reg.passErr2, 'has-feedback': reg.passErr2}">
+
+                <input type="password" class="form-control login-field margin-space-sm" name="password2"
+                       placeholder="Repeat Password" ng-model="reg.password2" ng-focus="reg.check(2)" autocomplete="off"/>
+
+                <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="reg.passErr2"></span>
+                <div class="input-tip"><span >{{reg.passMsg2}}&nbsp;</span></div>
+              <!--  <div class="input-tip" ng-hide="reg.passErr2"><span >&nbsp;</span></div>-->
+
+            </div>
+        </div>
+        <div class="col-lg-10 col-center-block" >
+            <div class="form-group register-form-group" ng-class="{'has-error': reg.emailErr, 'has-feedback': reg.emailErr}">
+
+                <input type="text" class="form-control login-field margin-space-sm" name="email"
+                        placeholder="Email" ng-model="reg.email" ng-focus="reg.check(3)" autocomplete="off"/>
+
+                <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="reg.emailErr"></span>
+                <div class="input-tip" ><span >{{reg.emailMsg}}&nbsp;</span></div>
+                <!--<div class="input-tip" ng-hide="reg.emailErr"><span >&nbsp;</span></div>-->
+
+            </div>
+        </div>
+    </div>
+
+    </form>
+</div>
+<div class="modal-footer">
+    <div class="row ">
+        <div class="col-lg-10 col-center-block">
+        <button class="btn btn-primary btn-reg-custom" type="button" ng-click="ok()">OK</button>
+        <button class="btn btn-warning btn-reg-custom" type="button" ng-click="cancel()">Cancel</button>
+        </div>
+    </div>
+</div>
+

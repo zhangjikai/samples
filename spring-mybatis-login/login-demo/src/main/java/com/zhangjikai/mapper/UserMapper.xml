@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="com.zhangjikai.mapper.UserMapper" >
+
+
+    <resultMap id="userMap" type="user">
+        <id property="userId" column="_userid"/>
+        <result property="userName" column="_username"/>
+        <result property="password" column="_password"/>
+        <result property="email" column="_email"/>
+    </resultMap>
+
+    <select id="findUser" parameterType="user" resultMap="userMap">
+      select _userId, _username, _password, _email from _user
+      <where>
+          <if test="userId != null">
+              _userId = #{userId}
+          </if>
+          <if test="userName != null">
+              and _username = #{userName}
+          </if>
+          <if test="password != null">
+              and _password = #{password}
+          </if>
+          <if test="email != null">
+              and _email = #{email}
+          </if>
+      </where>
+    </select>
+
+    <select id="isExists" parameterType="user" resultType="String">
+        select 1 from _user
+        <where>
+            <if test="userId != null">
+                _userId = #{userId}
+            </if>
+
+            <if test="userName != null">
+                and _username = #{userName}
+            </if>
+
+            <if test="email != null">
+                and _email = #{email}
+            </if>
+        </where>
+    </select>
+
+    <insert id="addUser" useGeneratedKeys="true" keyProperty="userId">
+        insert into _user(_username, _password, _email) values (#{userName}, #{password}, #{email})
+    </insert>
+</mapper>

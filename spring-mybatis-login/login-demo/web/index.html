@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="login">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Login</title>
+
+    <link rel="stylesheet" href="css/lib/bootstrap.min.css">
+    <link rel="stylesheet" href="css/lib/bootflat.min.css">
+    <link rel="stylesheet" href="css/lib/loaders.min.css">
+
+    <!-- <link rel="stylesheet" href="bower_components/Bootflat/js/site.min.js">-->
+
+    <link rel="stylesheet" href="css/lib/toaster.min.css">
+
+    <link rel="stylesheet" href="app/login/login.css">
+
+    <!--<link href="bower_components/flat-ui/dist/css/flat-ui.css" rel="stylesheet">-->
+    <!--<link href="asserts/css/style.css" rel="stylesheet">-->
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+</head>
+<body>
+
+
+
+<toaster-container toaster-options="{'position-class': 'toast-top-center', 'time-out': 2000}"></toaster-container>
+
+<!--<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                <img src="asserts/img/logo2.png" alt="">
+            </a>
+        </div>
+    </div>
+
+</nav>-->
+
+<div class="container" ng-controller="loginCtrl">
+    <div class="row ">
+        <div class=" col-md-4 col-center-block">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <form name="loginForm">
+                        <div class="custom-login-form">
+                            <div class="col-lg-12 col-center-block" ng-class="{'has-error': unameErr, 'has-feedback': unameErr}">
+                                <div class="form-group  margin-space">
+                                    <input type="text" class="form-control login-field" name="username" value=""
+                                           placeholder="Username" id="login-name" ng-model="username" autocomplete="off">
+                                    <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="unameErr"></span>
+                                    <div class="input-tip" ng-cloak ng-show="true"><span >{{unameMsg}}&nbsp;</span></div>
+                                    <div class="input-tip"  ng-show="false"><span >&nbsp;</span></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-center-block" ng-class="{'has-error': passErr, 'has-feedback': passErr}">
+                                <div class="form-group ">
+                                    <input type="password" class="form-control login-field" value="" placeholder="Password"
+                                           id="login-pass" ng-model="password" autocomplete="off">
+                                    <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="passErr"></span>
+                                    <div class="input-tip" ng-cloak ng-show="true"><span >{{passMsg}}&nbsp;</span></div>
+                                    <div class="input-tip"  ng-show="false"><span >&nbsp;</span></div>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-center-block" >
+                                <a class="btn btn-primary btn-lg btn-block margin-space-sm" href="#" ng-click="submitLoginForm()">Log in</a>
+                                <a class="login-link" style="float: left" href="#" target="_blank">Lost your password?</a>
+                                <a class="login-link" style="float: right" href="" ng-click="open();">Register</a>
+                            </div>
+
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="loading-background" ng-cloak ng-show="showWaiting" >
+        <div class="loading-icon">
+
+            <div class="loader">
+                <div class="loader-inner line-scale">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+</body>
+<script src="js/lib/angular.min.js"></script>
+<script src="js/lib/angular-route.min.js"></script>
+<script src="js/lib/angular-animate.min.js"></script>
+<script src="js/lib/ui-bootstrap.min.js"></script>
+<script src="js/lib/ui-bootstrap-tpls.min.js"></script>
+<script src="js/lib/angularjs.toaster.min.js"></script>
+<script src="app/login/login.js"></script>
+
+</html>
