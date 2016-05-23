@@ -18,7 +18,6 @@ import java.util.regex.Pattern;
 @RestController
 public class UserController {
 
-
     @Autowired
     private UserService userService;
 
@@ -36,7 +35,6 @@ public class UserController {
             return Constants.USER_NO_EXISTS;
         }
     }
-
 
     @RequestMapping(value = "/checkEmail", method = RequestMethod.POST, produces = "application/json;charset=utf8")
     @ResponseBody
@@ -63,7 +61,6 @@ public class UserController {
         if(isNull(user.getUserName()) || isNull(user.getPassword()) || isNull(user.getEmail())) {
             return Constants.USER_REGISTER_FAIL;
         }
-
 
         if(checkLen(user.getUserName(), 6) || checkLen(user.getPassword(), 8)) {
             return Constants.USER_REGISTER_FAIL;

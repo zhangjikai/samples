@@ -25,11 +25,7 @@
 .btn {
   transition: border 0.25s linear, color 0.25s linear, background-color 0.25s linear;
 }
-/*
-.modal-footer {
-  border-top: 1px solid gray;
-  margin-top: @m;
-}*/
+
 [ng\:cloak],
 [ng-cloak],
 [data-ng-cloak],
