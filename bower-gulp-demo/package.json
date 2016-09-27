@@ -10,6 +10,6 @@
   "author": "zhangjikai",
   "license": "MIT",
   "devDependencies": {
-    "gulp": "^3.9.1",
+    "gulp": "^3.9.1"
   }
 }
