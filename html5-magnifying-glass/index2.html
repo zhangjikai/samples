@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Glass</title>
+    <style type="text/css">
+        #canvas {
+            display: block;
+            border: 1px solid red;
+            margin: 0 auto;
+            cursor:crosshair;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="500" height="500">
+
+
+</canvas>
+
+<img src="camp.png" style="display: none" id="img">
+
+<script type="text/javascript">
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+    var img = document.getElementById("img");
+    var scale = 2;
+
+    var glassCenterPoint = {};
+    var glassRadius = 100;
+    glassCenterPoint.x = 200;
+    glassCenterPoint.y = 200;
+    var glassRectangle = {}
+
+
+    window.onload = function () {
+        addListener();
+        drawBackGround();
+        calGlassRectangle(glassCenterPoint);
+        drawGlass();
+
+    }
+
+
+    function drawBackGround() {
+        context.drawImage(img, 0, 0);
+    }
+
+
+    function calGlassRectangle(point) {
+        var top, left, bottom, right;
+        glassRectangle.x = point.x - glassRadius;
+        glassRectangle.y = point.y - glassRadius;
+        glassRectangle.width = glassRadius * 2;
+        glassRectangle.height = glassRadius * 2;
+
+        top = glassRectangle.y;
+        left = glassRectangle.x;
+        bottom = glassRectangle.y + glassRectangle.height;
+        right = glassRectangle.x + glassRectangle.width;
+
+        /*if (left < 0) {
+            glassRectangle.width += left;
+            glassRectangle.x = 0;
+        } else if (right > canvas.width) {
+            glassRectangle.width -= right - canvas.width;
+        }
+
+        if (top < 0) {
+            glassRectangle.height += glassRectangle.y;
+            glassRectangle.y = 0;
+        } else if (bottom > canvas.height) {
+            glassRectangle.height -= bottom - canvas.height;
+        }*/
+    }
+    function drawGlass() {
+
+        var scaleGlassRectangle = {
+            width: glassRectangle.width * scale,
+            height: glassRectangle.height * scale
+        };
+        context.save();
+        context.beginPath();
+        context.arc(glassCenterPoint.x, glassCenterPoint.y, glassRadius, 0, Math.PI * 2, false);
+        context.clip();
+
+
+        context.drawImage(canvas,
+                glassRectangle.x, glassRectangle.y,
+                glassRectangle.width, glassRectangle.height,
+                glassRectangle.x + glassRectangle.width / 2 - scaleGlassRectangle.width / 2,
+                glassRectangle.y + glassRectangle.height / 2 - scaleGlassRectangle.height / 2,
+                scaleGlassRectangle.width, scaleGlassRectangle.height
+        );
+        context.restore();
+
+        context.beginPath();
+        var gradientThickness = 10;
+        var gradient = context.createRadialGradient(
+                glassCenterPoint.x, glassCenterPoint.y, glassRadius - 5,
+                glassCenterPoint.x, glassCenterPoint.y, glassRadius);
+        gradient.addColorStop(0, 'rgba(0,0,0,0.2)');
+        gradient.addColorStop(0.80, 'silver');
+        gradient.addColorStop(0.90, 'silver');
+        gradient.addColorStop(1.0, 'rgba(150,150,150,0.9)');
+        /*gradient.addColorStop(0,"red");
+         gradient.addColorStop(1,"white");*/
+        context.strokeStyle = gradient;
+        context.lineWidth = 5;
+        context.arc(glassCenterPoint.x, glassCenterPoint.y,
+                glassRadius, 0, Math.PI * 2, false);
+
+        context.stroke();
+
+        /*context.save();
+         context.beginPath();
+         context.arc(centerPoint.x, centerPoint.y,
+         100, 0, Math.PI * 2, false);
+
+
+         context.clip();
+         context.drawImage(canvas, centerPoint.x - 100, centerPoint.y - 100, 200, 200);
+         context.strokeStyle = "#fff";
+         context.arc(centerPoint.x, centerPoint.y,
+         100, 0, Math.PI * 2, false);
+         context.lineWidth = 5;
+         context.stroke();
+         context.restore();*/
+    }
+
+    function drawGlassCircle() {
+
+    }
+
+    function addListener() {
+        canvas.onmousemove = function (e) {
+            glassCenterPoint = windowToCanvas(e.clientX, e.clientY);
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            drawBackGround();
+            calGlassRectangle(glassCenterPoint);
+            drawGlass();
+        }
+    }
+
+    function windowToCanvas(x, y) {
+        var bbox = canvas.getBoundingClientRect();
+        //console.log(bbox);
+        return {
+            x: x - bbox.left * (canvas.width / bbox.width),
+            y: y - bbox.top * (canvas.height / bbox.height)
+        };
+        /*var bbox = canvas.getBoundingClientRect()
+        return {x: x - bbox.left, y: y - bbox.top}*/
+    }
+
+</script>
+</body>
+</html>
