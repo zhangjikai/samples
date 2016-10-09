@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Glass</title>
+    <style type="text/css">
+
+        #introduce {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        code {
+            background: #eee;
+            padding: 3px;
+        }
+
+        #canvas {
+            display: block;
+            border: 1px solid red;
+            margin: 0 auto;
+            cursor: pointer;
+            background: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+<div id="introduce">鼠标拖动放大镜，双击选择线段，<code>w a s d</code> 键精确移动。</div>
+<canvas id="canvas" width="500" height="500">
+</canvas>
+
+<img src="image.png" style="display: none" id="img">
+
+
+<script type="text/javascript">
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+    var img = document.getElementById("img");
+    var scale = 8;
+
+    var centerPoint;
+    var originalRadius = 50;
+    var originalRectangle = {};
+    var scaleGlassRectangle = {};
+
+    // 原始线段
+    var chartLines = new Array();
+    // 处于放大镜中的原始线段
+    var glassLines;
+    // 放大后的线段
+    var scaleGlassLines;
+    // 位于放大镜中的线段数量
+    var glassLineSize;
+
+    var lastPoint = {};
+    var moveGlass = false;
+
+    window.onload = function () {
+        initLines();
+        addListener();
+        centerPoint = {x: 200, y: 200};
+        draw();
+
+    }
+
+    function Point(x, y, index) {
+        this.x = x;
+        this.y = y;
+        this.index = index;
+    }
+
+
+    function Line(xStart, yStart, xEnd, yEnd, index, color) {
+        // 起点x坐标
+        this.xStart = xStart;
+        // 起点y坐标
+        this.yStart = yStart;
+        // 终点x坐标
+        this.xEnd = xEnd;
+        // 终点y坐标
+        this.yEnd = yEnd;
+        // 用来标记是哪条线段
+        this.index = index;
+        // 线段颜色
+        this.color = color;
+    }
+
+    function initLines() {
+        var line;
+        line = new Line(200.5, 400, 200.5, 200, 0, "#888");
+        chartLines.push(line);
+        line = new Line(201.5, 400, 201.5, 20, 1, "#888");
+        chartLines.push(line);
+
+
+        glassLineSize = chartLines.length;
+        glassLines = new Array(glassLineSize);
+        for (var i = 0; i < glassLineSize; i++) {
+            line = new Line(0, 0, 0, 0, i);
+            glassLines[i] = line;
+        }
+
+        scaleGlassLines = new Array(glassLineSize);
+        for (var i = 0; i < glassLineSize; i++) {
+            line = new Line(0, 0, 0, 0, i);
+            scaleGlassLines[i] = line;
+        }
+    }
+
+    function drawLines() {
+        var line;
+        context.lineWidth = 1;
+
+        for (var i = 0; i < chartLines.length; i++) {
+            line = chartLines[i];
+            context.beginPath();
+            context.strokeStyle = line.color;
+            /*var bbox = canvas.getBoundingClientRect()
+             return {x: x - bbox.left, y: y - bbox.top}*/
+            context.moveTo(line.xStart, line.yStart);
+            context.lineTo(line.xEnd, line.yEnd);
+            context.stroke();
+        }
+    }
+
+
+    function calGlassRectangle(point) {
+        originalRectangle.x = point.x - originalRadius;
+        originalRectangle.y = point.y - originalRadius;
+        originalRectangle.width = originalRadius * 2;
+        originalRectangle.height = originalRadius * 2;
+
+        scaleGlassRectangle.width = originalRectangle.width * scale;
+        scaleGlassRectangle.height = originalRectangle.height * scale;
+        scaleGlassRectangle.x = originalRectangle.x + originalRectangle.width / 2 - scaleGlassRectangle.width / 2;
+        scaleGlassRectangle.y = originalRectangle.y + originalRectangle.height / 2 - scaleGlassRectangle.height / 2;
+
+        // 将值装换为整数
+        scaleGlassRectangle.width = parseInt(scaleGlassRectangle.width);
+        scaleGlassRectangle.height = parseInt(scaleGlassRectangle.height);
+        scaleGlassRectangle.x = parseInt(scaleGlassRectangle.x);
+        scaleGlassRectangle.y = parseInt(scaleGlassRectangle.y);
+    }
+
+
+    function drawMagnifyingGlass() {
+        calScaleLines();
+
+        context.save();
+        context.beginPath();
+        context.arc(centerPoint.x, centerPoint.y, originalRadius, 0, Math.PI * 2, false);
+        context.clip();
+
+        context.beginPath();
+        context.fillStyle = "#fff";
+        context.arc(centerPoint.x, centerPoint.y, originalRadius, 0, Math.PI * 2, false);
+        context.fill();
+
+        context.lineWidth = 4;
+        for (var i = 0; i < glassLineSize; i++) {
+            context.beginPath();
+            context.strokeStyle = scaleGlassLines[i].color;
+            context.moveTo(scaleGlassRectangle.x + scaleGlassLines[i].xStart, scaleGlassRectangle.y + scaleGlassLines[i].yStart);
+            context.lineTo(scaleGlassRectangle.x + scaleGlassLines[i].xEnd, scaleGlassRectangle.y + scaleGlassLines[i].yEnd);
+            context.stroke();
+        }
+
+        context.restore();
+
+        context.beginPath();
+        var gradient = context.createRadialGradient(
+                parseInt(centerPoint.x), parseInt(centerPoint.y), originalRadius - 5,
+                parseInt(centerPoint.x), parseInt(centerPoint.y), originalRadius);
+        gradient.addColorStop(0.50, 'silver');
+        gradient.addColorStop(0.90, 'silver');
+        gradient.addColorStop(1, 'black');
+
+        context.strokeStyle = gradient;
+        context.lineWidth = 5;
+        context.arc(parseInt(centerPoint.x), parseInt(centerPoint.y), originalRadius, 0, Math.PI * 2, false);
+        context.stroke();
+
+        drawAnchor();
+    }
+
+    function drawAnchor() {
+        context.beginPath();
+        context.lineWidth = 2;
+        context.fillStyle = "#fff";
+        context.strokeStyle = "#000";
+        context.arc(parseInt(centerPoint.x), parseInt(centerPoint.y), 10, 0, Math.PI * 2, false);
+
+        var radius = 15;
+        context.moveTo(parseInt(centerPoint.x - radius), parseInt(centerPoint.y));
+        context.lineTo(parseInt(centerPoint.x + radius), parseInt(centerPoint.y));
+        context.moveTo(parseInt(centerPoint.x), parseInt(centerPoint.y - radius));
+        context.lineTo(parseInt(centerPoint.x), parseInt(centerPoint.y + radius));
+        context.stroke();
+    }
+
+    function calScaleLines() {
+        var xStart = originalRectangle.x;
+        var xEnd = originalRectangle.x + originalRectangle.width;
+        var yStart = originalRectangle.y;
+        var yEnd = originalRectangle.y + originalRectangle.height;
+        var line, gLine, sgLine;
+        var glassLineIndex = 0;
+        for (var i = 0; i < chartLines.length; i++) {
+            line = chartLines[i];
+            // 判断线段是否在放大镜中
+            if (line.xStart < xStart || line.xEnd > xEnd) {
+                continue;
+            }
+            if (line.yEnd > yEnd || line.yStart < yStart) {
+                continue;
+            }
+
+            gLine = glassLines[glassLineIndex];
+            sgLine = scaleGlassLines[glassLineIndex];
+            if (line.yEnd > yEnd) {
+                gLine.yEnd = yEnd;
+            }
+            if (line.yStart < yStart) {
+                gLine.yStart = yStart;
+            }
+
+            gLine.xStart = line.xStart - xStart;
+            gLine.yStart = line.yStart - yStart;
+            gLine.xEnd = line.xEnd - xStart;
+            gLine.yEnd = line.yEnd - yStart;
+
+            sgLine.xStart = parseInt(gLine.xStart * scale);
+            sgLine.yStart = parseInt(gLine.yStart * scale);
+            sgLine.xEnd = parseInt(gLine.xEnd * scale);
+            sgLine.yEnd = parseInt(gLine.yEnd * scale);
+            sgLine.color = line.color;
+            glassLineIndex++;
+        }
+        glassLineSize = glassLineIndex;
+
+    }
+
+
+    function draw() {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        drawLines();
+        calGlassRectangle(centerPoint);
+        drawMagnifyingGlass();
+    }
+    function addListener() {
+
+        canvas.onmousedown = function (e) {
+
+            var point = windowToCanvas(e.clientX, e.clientY);
+
+            var x1, x2, y1, y2, dis;
+            x1 = point.x;
+            y1 = point.y;
+            x2 = centerPoint.x;
+            y2 = centerPoint.y;
+            dis = Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2);
+            if (dis < Math.pow(originalRadius, 2)) {
+                console.log(222);
+                lastPoint.x = point.x;
+                lastPoint.y = point.y;
+                moveGlass = true;
+            }
+        }
+
+        canvas.onmousemove = function (e) {
+            if (moveGlass) {
+                var xDis, yDis;
+                var point = windowToCanvas(e.clientX, e.clientY);
+                xDis = point.x - lastPoint.x;
+                yDis = point.y - lastPoint.y;
+                centerPoint.x += xDis;
+                centerPoint.y += yDis;
+                lastPoint.x = point.x;
+                lastPoint.y = point.y;
+                draw();
+            }
+        }
+
+        canvas.onmouseup = function (e) {
+            moveGlass = false;
+        }
+
+        canvas.ondblclick = function (e) {
+            var xStart, xEnd, yStart, yEnd;
+            var clickPoint = {};
+            clickPoint.x = scaleGlassRectangle.x + scaleGlassRectangle.width / 2;
+            clickPoint.y = scaleGlassRectangle.y + scaleGlassRectangle.height / 2;
+            var index = -1;
+
+            for (var i = 0; i < scaleGlassLines.length; i++) {
+                var scaleLine = scaleGlassLines[i];
+
+                xStart = scaleGlassRectangle.x + scaleLine.xStart - 3;
+                xEnd = scaleGlassRectangle.x + scaleLine.xStart + 3;
+                yStart = scaleGlassRectangle.y + scaleLine.yStart;
+                yEnd = scaleGlassRectangle.y + scaleLine.yEnd;
+                if (clickPoint.x > xStart && clickPoint.x < xEnd && clickPoint.y < yStart && clickPoint.y > yEnd) {
+                    scaleLine.color = "#f00";
+                    index = scaleLine.index;
+                    break;
+                }
+            }
+            for (var i = 0; i < chartLines.length; i++) {
+                var line = chartLines[i];
+                if (line.index == index) {
+                    line.color = "#f00";
+                } else {
+                    line.color = "#888";
+                }
+            }
+
+            draw();
+        }
+    }
+
+    function intAdd(num, num2) {
+        return (num * 100 + num2 * 100) / 100
+    }
+
+    document.onkeyup = function (e) {
+        if (e.key == 'w') {
+            centerPoint.y = intAdd(centerPoint.y, -0.2);
+        }
+        if (e.key == 'a') {
+            centerPoint.x = intAdd(centerPoint.x, -0.2);
+        }
+        if (e.key == 's') {
+            centerPoint.y = intAdd(centerPoint.y, 0.2);
+        }
+        if (e.key == 'd') {
+            centerPoint.x = intAdd(centerPoint.x, 0.2);
+        }
+        draw();
+    }
+
+    function windowToCanvas(x, y) {
+        var bbox = canvas.getBoundingClientRect()
+        return {x: x - bbox.left, y: y - bbox.top}
+    }
+
+</script>
+</body>
+</html>
