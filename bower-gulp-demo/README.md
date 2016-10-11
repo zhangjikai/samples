@@ -1,3 +1,25 @@
+
+
+<!-- toc -->
+
+- [使用](#%E4%BD%BF%E7%94%A8)
+- [Bower](#bower)
+  * [安装](#%E5%AE%89%E8%A3%85)
+  * [初始化](#%E5%88%9D%E5%A7%8B%E5%8C%96)
+  * [使用](#%E4%BD%BF%E7%94%A8-1)
+    + [安装类库](#%E5%AE%89%E8%A3%85%E7%B1%BB%E5%BA%93)
+    + [更新类库](#%E6%9B%B4%E6%96%B0%E7%B1%BB%E5%BA%93)
+    + [卸载类库](#%E5%8D%B8%E8%BD%BD%E7%B1%BB%E5%BA%93)
+  * [配置](#%E9%85%8D%E7%BD%AE)
+- [Gulp](#gulp)
+  * [安装](#%E5%AE%89%E8%A3%85-1)
+  * [错误处理](#%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86)
+  * [配置WebServer](#%E9%85%8D%E7%BD%AEwebserver)
+  * [编译Less](#%E7%BC%96%E8%AF%91less)
+- [Gulp集成Bower](#gulp%E9%9B%86%E6%88%90bower)
+
+<!-- tocstop -->
+
 ## 使用
 ```
 npm install
@@ -154,4 +176,3 @@ gulp.task("move", function() {
     ).pipe(gulp.dest('lib'))
 });
 ```
-
