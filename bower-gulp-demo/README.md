@@ -71,6 +71,44 @@ gulp.task('less', function() {
 });
 ```
 
+### 配置WebServer
+**安装 [`gulp-connect`](https://github.com/avevlad/gulp-connect) 插件**
+```bash
+npm install --save-dev gulp-connect
+```
+
+**定义web服务**
+```js
+var connect = require("gulp-connect");
+
+gulp.task("webServer", function() {
+    connect.server({
+        port: 80
+    });
+});
+```
+
+**配置实时刷新**
+```js
+gulp.task("webServer", function () {
+    connect.server({
+        port: 80,
+        livereload: true
+    });
+});
+
+gulp.task('html', function () {
+    gulp.src('./*.html')
+        .pipe(connect.reload());
+});
+
+gulp.task("watch", function () {
+    gulp.watch("./*.html", ["html"])
+});
+
+gulp.task('default', ['webServer', 'watch']);
+```
+
 
 ## Gulp集成Bower
 可以试试下面几个插件
@@ -93,3 +131,4 @@ gulp.task("move", function() {
     ).pipe(gulp.dest('lib'))
 });
 ```
+

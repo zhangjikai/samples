@@ -2,63 +2,63 @@
  * Created by zhangjk on 2016/9/27.
  */
 /*
-var gulp = require('gulp');
-var mainBowerFiles = require('main-bower-files');
-var plumber = require('gulp-plumber');
+ var gulp = require('gulp');
+ var mainBowerFiles = require('main-bower-files');
+ var plumber = require('gulp-plumber');
 
-gulp.task('bower-files', function () {
-    return gulp.src(mainBowerFiles())
-        .pipe(plumber())
-        .pipe(gulp.dest("lib"))
-});
+ gulp.task('bower-files', function () {
+ return gulp.src(mainBowerFiles())
+ .pipe(plumber())
+ .pipe(gulp.dest("lib"))
+ });
 
-gulp.task('bower', function() {
-    return bower('bower_components')
-        .pipe(gulp.dest('lib/'))
-});*/
+ gulp.task('bower', function() {
+ return bower('bower_components')
+ .pipe(gulp.dest('lib/'))
+ });*/
 
 
 /*
-var gulp = require('gulp');
+ var gulp = require('gulp');
 
-// define plug-ins
-var flatten = require('gulp-flatten');
-var gulpFilter = require('gulp-filter');
-var uglify = require('gulp-uglify');
-var minifycss = require('gulp-minify-css');
-var rename = require('gulp-rename');
-var mainBowerFiles = require('main-bower-files');
+ // define plug-ins
+ var flatten = require('gulp-flatten');
+ var gulpFilter = require('gulp-filter');
+ var uglify = require('gulp-uglify');
+ var minifycss = require('gulp-minify-css');
+ var rename = require('gulp-rename');
+ var mainBowerFiles = require('main-bower-files');
 
-// Define paths variables
-var dest_path =  './lib';
-// grab libraries files from bower_components, minify and push in /public
-gulp.task('publish-components', function() {
+ // Define paths variables
+ var dest_path =  './lib';
+ // grab libraries files from bower_components, minify and push in /public
+ gulp.task('publish-components', function() {
 
-    var jsFilter = gulpFilter('*.js', {restore:true});
-    var cssFilter = gulpFilter('*.css', {restore: true});
-    var fontFilter = gulpFilter(['*.eot', '*.woff', '*.svg', '*.ttf'], {restore:true});
+ var jsFilter = gulpFilter('*.js', {restore:true});
+ var cssFilter = gulpFilter('*.css', {restore: true});
+ var fontFilter = gulpFilter(['*.eot', '*.woff', '*.svg', '*.ttf'], {restore:true});
 
-    return gulp.src(mainBowerFiles())
-        .pipe(jsFilter)
-        .pipe(gulp.dest(dest_path + '/js/'))
-        .pipe(uglify())
-        .pipe(rename({
-            suffix: ".min"
-        }))
-        .pipe(gulp.dest(dest_path + '/js/'))
-        .pipe(jsFilter.restore)
-        .pipe(cssFilter)
-        .pipe(gulp.dest(dest_path + '/css'))
-        .pipe(minifycss())
-        .pipe(rename({
-            suffix: ".min"
-        }))
-        .pipe(gulp.dest(dest_path + '/css'))
-        .pipe(cssFilter.restore)
-        .pipe(fontFilter)
-        .pipe(flatten())
-        .pipe(gulp.dest(dest_path + '/fonts'));
-});*/
+ return gulp.src(mainBowerFiles())
+ .pipe(jsFilter)
+ .pipe(gulp.dest(dest_path + '/js/'))
+ .pipe(uglify())
+ .pipe(rename({
+ suffix: ".min"
+ }))
+ .pipe(gulp.dest(dest_path + '/js/'))
+ .pipe(jsFilter.restore)
+ .pipe(cssFilter)
+ .pipe(gulp.dest(dest_path + '/css'))
+ .pipe(minifycss())
+ .pipe(rename({
+ suffix: ".min"
+ }))
+ .pipe(gulp.dest(dest_path + '/css'))
+ .pipe(cssFilter.restore)
+ .pipe(fontFilter)
+ .pipe(flatten())
+ .pipe(gulp.dest(dest_path + '/fonts'));
+ });*/
 
 
 //// Include Gulp
@@ -86,14 +86,14 @@ gulp.task('publish-components', function() {
 //});
 
 /*
-var gulp = require('gulp');
-var gbowerTask = require('gulp-bower-task');
+ var gulp = require('gulp');
+ var gbowerTask = require('gulp-bower-task');
 
-gulp.task('default',function(){
-    gulp.src('bower.json')
-        .pipe(gbowerTask())
-        .pipe(gulp.dest('./output/'));
-})*/
+ gulp.task('default',function(){
+ gulp.src('bower.json')
+ .pipe(gbowerTask())
+ .pipe(gulp.dest('./output/'));
+ })*/
 
 //
 //var gulp = require('gulp');
@@ -113,8 +113,9 @@ gulp.task('default',function(){
 //})
 
 var gulp = require("gulp");
+var connect = require("gulp-connect");
 
-gulp.task("move", function() {
+gulp.task("move", function () {
     return gulp.src(
         ['./bower_components/bootstrap/dist/js/**/*bootstrap*js',
             './bower_components/bootstrap/dist/css/**/*bootstrap*css',
@@ -122,7 +123,25 @@ gulp.task("move", function() {
             './bower_components/jquery/dist/**/**jquery*js'
         ],
         {
-            base:'./bower_components'
+            base: './bower_components'
         }
     ).pipe(gulp.dest('lib'))
 });
+
+gulp.task("webServer", function () {
+    connect.server({
+        port: 80,
+        livereload: true
+    });
+});
+
+gulp.task('html', function () {
+    gulp.src('./*.html')
+        .pipe(connect.reload());
+});
+
+gulp.task("watch", function () {
+    gulp.watch("./*.html", ["html"])
+});
+
+gulp.task('default', ['webServer', 'watch']);
