@@ -114,6 +114,7 @@
 
 var gulp = require("gulp");
 var connect = require("gulp-connect");
+var less = require("gulp-less");
 
 gulp.task("move", function () {
     return gulp.src(
@@ -141,7 +142,15 @@ gulp.task('html', function () {
 });
 
 gulp.task("watch", function () {
-    gulp.watch("./*.html", ["html"])
+    gulp.watch("./*.html", ["html"]);
+    gulp.watch("./less/*.less", ["less"]);
 });
 
-gulp.task('default', ['webServer', 'watch']);
+gulp.task('less', function() {
+   gulp.src("less/*.less")
+       .pipe(less())
+       .pipe(gulp.dest("css"))
+       .pipe(connect.reload());
+});
+
+gulp.task('default', ['webServer', 'watch', 'less']);

@@ -109,6 +109,29 @@ gulp.task("watch", function () {
 gulp.task('default', ['webServer', 'watch']);
 ```
 
+### 编译Less
+**安装gulp-less插件**
+```bash
+npm install --save-dev gulp-less
+```
+**配置**
+```js
+var less = require("gulp-less");
+
+gulp.task('less', function() {
+   gulp.src("less/*.less")
+       .pipe(less())
+       .pipe(gulp.dest("css"))
+       .pipe(connect.reload());
+});
+
+gulp.task("watch", function () {
+    gulp.watch("./less/*.less", ["less"]);
+});
+
+
+gulp.task('default', ['webServer', 'watch', 'less']);
+```
 
 ## Gulp集成Bower
 可以试试下面几个插件
