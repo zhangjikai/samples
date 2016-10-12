@@ -131,6 +131,23 @@ gulp.task("watch", function () {
 gulp.task('default', ['webServer', 'watch']);
 ```
 
+### 配置Browsersync
+另外一款web服务器插件，[地址](https://www.browsersync.io/)
+```js
+var browserSync = require('browser-sync');
+
+gulp.task('browserSync', function() {
+    browserSync({
+        server: {
+            baseDir: '.',
+        },
+        port: 80
+    })
+});
+
+gulp.watch("app/**/*.js", browserSync.reload);
+```
+
 ### 编译Less
 **安装gulp-less插件**
 ```bash
