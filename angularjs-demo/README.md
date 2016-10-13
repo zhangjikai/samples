@@ -28,7 +28,7 @@ AngularJs 可以对指定的 `ng-app` ，定义路由规则，然后通过不同
 <script type="text/javascript" src="assets/lib/angular-route/angular-route.min.js"></script>
 ```
 
-**编写 template 文件 和 Controller **  
+**编写template文件和Controller **  
 > home.tpl.html
 
 ```html
