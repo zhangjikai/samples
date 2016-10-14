@@ -5,4 +5,5 @@ angular.module('app.core').controller('HomeCtrl', ['$scope', 'NgTableParams', fu
     var vm = this;
     var data = [{name: "Moroni", age: 50} /*,*/];
     vm.tableParams = new NgTableParams({}, { dataset: data});
+
 }]);
