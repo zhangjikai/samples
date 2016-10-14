@@ -1,0 +1,1 @@
+angular.module('angularjs-ngtable', ['ngRoute', 'app.routes', 'app.core']);
