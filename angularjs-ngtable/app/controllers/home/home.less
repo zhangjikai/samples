@@ -1,7 +1,30 @@
 @import "../../common/common.less";
 
+#table-panel{
+  overflow: auto;
+}
+
+.wide-width {
+  width: 800px;
+}
 p {
   background: @base-color;
   font: @base-font;
   padding: 20px;
+}
+
+
+.custom-td{
+  display:inline-block;
+  *display:inline;
+  *zoom:1;
+  overflow: auto;
+  a {
+    white-space:nowrap;
+  }
+}
+
+.img-cell {
+  display: inline-block;
+  width: auto;
 }

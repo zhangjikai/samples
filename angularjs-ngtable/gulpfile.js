@@ -17,7 +17,9 @@ gulp.task("move", function () {
             './bower_components/angular-bootstrap/**/*bootstrap*js',
             './bower_components/angular-bootstrap/**/*bootstrap*css',
             './bower_components/angular-sanitize/**/*angular*js',
-            './bower_components/angular-translate/**/*angular*js'
+            './bower_components/angular-translate/**/*angular*js',
+            './bower_components/angular-ui-grid/**/*ui-grid*'
+
 
         ],
         {
@@ -29,7 +31,8 @@ gulp.task("move", function () {
 gulp.task("move-npm", function () {
     return gulp.src(
         ['./node_modules/ng-table/bundles/**/*ng-table*js',
-            './node_modules/ng-table/bundles/**/*ng-table*css'
+            './node_modules/ng-table/bundles/**/*ng-table*css',
+            './node_modules/ui-grid-auto-fit-columns/dist/**/*Columns*js'
 
         ],
         {
