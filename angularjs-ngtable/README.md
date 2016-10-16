@@ -45,10 +45,44 @@ angular.module('app.core').controller('HomeCtrl', ['$scope', function ($scope) {
 ```
 
 ## 使用
-### 刷新数据和格式
+### 函数
+
 ```js
-// 使用setXXX来刷新数据
+// 设置表格定义
 $scope.gridOptions.api.setColumnDefs(columnDefs);
+// 设置表格数据
 $scope.gridOptions.api.setRowData(rowData2);
+// 全选
+$scope.gridOptions.api.selectAll();
+// 取消全选
+$scope.gridOptions.api.deselectAll();
 ```
+### GridOptions 参数
+```js
+$scope.gridOptions = {
+    // 
+    angularCompileRows: true,
+    rowHeight: 45,
+    // 行高
+    columnDefs: columnDefs,
+    rowData: rowData,
+    // 数据选择模式
+    rowSelection: 'multiple',
+    enableColResize: true,
+    // 表格加载完成事件
+    onGridReady: resizeTable
+};
+```
+### ColumnDefs 参数
+```js
+var columnDef = {
+    // 单元格格式
+    cellClass: "custom-cell",
+    // 是否是checkbox，如果只想要checkbox，可以设置 headerName: '',
+    checkboxSelection: true,
+}
+```
+### 设置Cell样式
+[Cell Styling](https://www.ag-grid.com/javascript-grid-cell-styling/index.php)
+
  

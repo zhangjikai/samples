@@ -5,19 +5,21 @@ angular.module('app.core').controller('HomeCtrl', ['$scope', function ($scope) {
 
 
     var rowData = [
-        {make: "Toyota", model: "Celica", image: "images/002.png"},
-        {make: "Ford", model: "Mondeo", image: "images/002.png"},
-        {make: "Porsche", model: "Boxter", image: "images/002.png"}
+
+        {ratio: 0.8, image: "images/002.png"},
+        {ratio: 0.05, image: "images/002.png"},
+        {ratio: 0.15, image: "images/002.png"}
+
     ];
 
 
     var columnDefs = [
-        {headerName: "Make", field: "make"},
-        {headerName: "Model", field: "model"},
+        {headerName: '', checkboxSelection: true, suppressSorting: true, suppressMenu: true, pinned: true, width: 30, cellClass: "custom-cell"},
+        {headerName: "Ratio", field: "ratio", pinned: 'left', width: 60, cellClass: "custom-cell"},
         {
             headerName: "image",
             field: "image",
-            template: '<div><img src="{{data.image}}"  height="100"></div>'
+            template: '<div><img src="{{data.image}}"  height="40"></div>'
         }
     ];
 
@@ -26,138 +28,43 @@ angular.module('app.core').controller('HomeCtrl', ['$scope', function ($scope) {
         rowHeight: 45,
         columnDefs: columnDefs,
         rowData: rowData,
-        enableColResize: true
+        rowSelection: 'multiple',
+        enableColResize: true,
+        onGridReady: resizeTable
     };
-
-
-    this.change = function() {
-        //$scope.gridOptions.api.sizeColumnsToFit();
-
-        var columnDefs = [
-            {headerName: "Make", field: "make"},
-            {headerName: "Model", field: "model"},
-            {
-                headerName: "image",
-                field: "image",
-                width: 1000,
-                template: '<div><img src="{{data.image}}"  height="100"></div>'
-            }
-        ];
-
-
-        var rowData2 = [
-            {make: "111", model: "Celica", image: "images/002.png"},
-            {make: "Ford", model: "Mondeo", image: "images/002.png"},
-            {make: "Porsche", model: "Boxter", image: "images/002.png"}
-        ];
-
-
-        $scope.gridOptions.api.setColumnDefs(columnDefs);
-
-        $scope.gridOptions.api.setRowData(rowData2);
-
-    }
-
-
-
 
     var maxImgWidth = 0;
     var imageNums = 0;
     var singleData;
 
 
-
-    var images = new Array(3), imageNums = 0;
-
-    function loadImages() {
-        for (var i = 0; i < images.length; i++) {
-            images[i] = new Image();
-            images[i].addEventListener("load", trackProcess, true);
-            images[i].src = "images/002.png";
+    function resizeTable() {
+        for (var i = 0; i < rowData.length; i++) {
+            singleData = rowData[i];
+            imgReady(singleData.image, function () {
+                this.width = this.width * 40 / this.height;
+                if (this.width > maxImgWidth) {
+                    maxImgWidth = this.width;
+                }
+                trackProcess();
+            })
         }
     }
-
-    function trackProcess() {
-        imageNums++;
-        if (imageNums == images.length) {
-            defTables();
-        }
-    }
-
-    loadImages();
 
     function defTables() {
-
-        for (var i = 0; i < images.length; i++) {
-            if(images[i].width > maxImgWidth) {
-                maxImgWidth = images[i].width;
-            }
-        }
-
-        var columnDefs = [
-            {headerName: "Make", field: "make"},
-            {headerName: "Model", field: "model"},
-            {
-                headerName: "image",
-                field: "image",
-                width: maxImgWidth,
-                template: '<div><img src="{{data.image}}"  height="100"></div>'
-            }
-        ];
-
+        columnDefs[2].width = maxImgWidth;
         $scope.gridOptions.api.setColumnDefs(columnDefs);
-
-
-    }
-
-    for (var i = 0; i < rowData.length; i++) {
-        singleData = rowData[i];
-        imgReady(singleData.image, function () {
-            this.width = this.width * 100 / this.height;
-            if (this.width > maxImgWidth) {
-
-                maxImgWidth = this.width;
-            }
-            trackProcess();
-        })
-    }
-
-    function defTables() {
-        console.log(maxImgWidth);
-        var columnDefs = [
-            {headerName: "Make", field: "make"},
-            {headerName: "Model", field: "model"},
-            {
-                headerName: "image",
-                width: maxImgWidth,
-                field: "image",
-                template: '<div><img src="{{data.image}}"  height="100"></div>'
-            }
-        ];
-
-        $scope.gridOptions = {
-            angularCompileRows: true,
-            rowHeight: 45,
-            columnDefs: columnDefs,
-            rowData: rowData,
-            enableColResize: true
-        };
-
+        $scope.gridOptions.api.selectAll();
     }
 
 
     function trackProcess() {
         imageNums++;
         if (imageNums == rowData.length) {
-
             defTables();
         }
     }
 
 
-    //var model = $scope.gridOptions.api.getModel();
-
-
-    /* $scope.gridOptions.columnDefs[2].width = 500;*/
 
 }]);
