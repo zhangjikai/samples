@@ -8,7 +8,7 @@
   * [函数](#%E5%87%BD%E6%95%B0)
   * [GridOptions 参数](#gridoptions-%E5%8F%82%E6%95%B0)
   * [ColumnDefs 参数](#columndefs-%E5%8F%82%E6%95%B0)
-  * [设置Cell样式](#%E8%AE%BE%E7%BD%AEcell%E6%A0%B7%E5%BC%8F)
+  * [更新部分数据](#%E6%9B%B4%E6%96%B0%E9%83%A8%E5%88%86%E6%95%B0%E6%8D%AE)
 
 <!-- tocstop -->
 
@@ -67,6 +67,8 @@ $scope.gridOptions.api.setRowData(rowData2);
 $scope.gridOptions.api.selectAll();
 // 取消全选
 $scope.gridOptions.api.deselectAll();
+// 获得选中的行
+$scope.gridOptions.api.getSelectedRows();
 ```
 ### GridOptions 参数
 ```js
@@ -81,7 +83,9 @@ $scope.gridOptions = {
     rowSelection: 'multiple',
     enableColResize: true,
     // 表格加载完成事件
-    onGridReady: resizeTable
+    onGridReady: function
+    // 表格选择内容变化
+    onSelectionChanged: function
 };
 ```
 ### ColumnDefs 参数
@@ -93,5 +97,16 @@ var columnDef = {
     checkboxSelection: true,
 }
 ```
-### 设置Cell样式
-[Cell Styling](https://www.ag-grid.com/javascript-grid-cell-styling/index.php)
+### 更新部分数据
+```js
+var updatedNodes = [];
+// look for all the 'Jillian' nodes
+$scope.gridOptions.api.forEachNode( function(node) {
+    var data = node.data;
+    data.ratio = 0;
+    updatedNodes.push(node);
+});
+
+$scope.gridOptions.api.refreshCells(updatedNodes, ['ratio']);
+```
+

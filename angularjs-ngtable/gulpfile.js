@@ -20,7 +20,8 @@ gulp.task("move", function () {
             './bower_components/angular-translate/**/*angular*js',
             './bower_components/angular-ui-grid/**/*ui-grid*',
             './bower_components/ag-grid/dist/**/*ag-grid*',
-            './bower_components/ag-grid/dist/**/*.css'
+            './bower_components/ag-grid/dist/**/*.css',
+            './bower_components/hashmap/**/*.js'
 
 
         ],
