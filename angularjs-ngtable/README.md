@@ -1,6 +1,17 @@
 #ag-Grid
 [ag Grid](https://www.ag-grid.com/)
 
+<!-- toc -->
+
+- [基本使用](#%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8)
+- [使用](#%E4%BD%BF%E7%94%A8)
+  * [函数](#%E5%87%BD%E6%95%B0)
+  * [GridOptions 参数](#gridoptions-%E5%8F%82%E6%95%B0)
+  * [ColumnDefs 参数](#columndefs-%E5%8F%82%E6%95%B0)
+  * [设置Cell样式](#%E8%AE%BE%E7%BD%AEcell%E6%A0%B7%E5%BC%8F)
+
+<!-- tocstop -->
+
 ## 基本使用
 * 引入文件
 ```html
@@ -60,7 +71,7 @@ $scope.gridOptions.api.deselectAll();
 ### GridOptions 参数
 ```js
 $scope.gridOptions = {
-    // 
+    // column的有angularjs参数时要加此参数
     angularCompileRows: true,
     rowHeight: 45,
     // 行高
@@ -84,5 +95,3 @@ var columnDef = {
 ```
 ### 设置Cell样式
 [Cell Styling](https://www.ag-grid.com/javascript-grid-cell-styling/index.php)
-
- 
