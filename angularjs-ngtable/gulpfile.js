@@ -18,7 +18,9 @@ gulp.task("move", function () {
             './bower_components/angular-bootstrap/**/*bootstrap*css',
             './bower_components/angular-sanitize/**/*angular*js',
             './bower_components/angular-translate/**/*angular*js',
-            './bower_components/angular-ui-grid/**/*ui-grid*'
+            './bower_components/angular-ui-grid/**/*ui-grid*',
+            './bower_components/ag-grid/dist/**/*ag-grid*',
+            './bower_components/ag-grid/dist/**/*.css'
 
 
         ],

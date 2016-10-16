@@ -24,6 +24,7 @@
     "angular-sanitize": "^1.5.8",
     "angular-bootstrap": "^2.2.0",
     "angular-ui-grid": "^3.2.9",
-    "angular-touch": "^1.5.8"
+    "angular-touch": "^1.5.8",
+    "ag-grid": "^6.2.1"
   }
 }

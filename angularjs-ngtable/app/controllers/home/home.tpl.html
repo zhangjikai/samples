@@ -1,13 +1,10 @@
 <div class="row">
     <div class="col-md-3" id="table_panel">
-        
-        <div style="display: none">
-            <img src="images/002.png" id="img">
-        </div>
-        <div>
-            <div ui-grid="gridOptions" class="grid" ui-grid-pinning ui-grid-auto-resize ng-show="home.showTable"></div>
-        </div>
 
+
+        <div ag-grid="gridOptions" class="ag-fresh" style="height:200px;"></div>
+
+        <button ng-click="home.change()">点击</button>
         <!--<table>
             <th>
                 <td>name</td>
@@ -23,3 +20,4 @@
         </table>-->
     </div>
 </div>
+
