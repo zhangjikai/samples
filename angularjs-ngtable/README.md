@@ -2,22 +2,22 @@
 [ag Grid](https://www.ag-grid.com/)
 
 ## 基本使用
-1. 引入文件
+* 引入文件
 ```html
 <link rel="stylesheet" href="lib/ag-grid/dist/styles/ag-grid.css">
 <link rel="stylesheet" href="lib/ag-grid/dist/styles/theme-fresh.css">
 <script type="text/javascript" src="lib/ag-grid/dist/ag-grid.min.js"></script>
 ```
-2. 加载module
+* 加载module
 ```js
 agGrid.initialiseAgGridWithAngular1(angular);
 angular.module('app.core', ['ngSanitize', 'ui.bootstrap', 'ngAnimate', "agGrid"]);
 ```
-3. Html Template
+* Html Template
 ```js
 <div ag-grid="gridOptions" class="ag-fresh" style="height:200px;"></div>
 ```
-4. Js Controller
+* Js Controller
 ```js
 angular.module('app.core').controller('HomeCtrl', ['$scope', function ($scope) {
     var rowData = [
