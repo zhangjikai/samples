@@ -105,11 +105,6 @@ angular.module('app.core').controller('HomeCtrl', ['$scope', function ($scope) {
             }
         ];
 
-
-        /*$scope.gridOptions.columnDefs = columnDefs;
-
-        console.log(maxImgWidth);*/
-
         $scope.gridOptions.api.setColumnDefs(columnDefs);
 
 

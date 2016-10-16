@@ -43,3 +43,12 @@ angular.module('app.core').controller('HomeCtrl', ['$scope', function ($scope) {
     };
 }
 ```
+
+## 使用
+### 刷新数据和格式
+```js
+// 使用setXXX来刷新数据
+$scope.gridOptions.api.setColumnDefs(columnDefs);
+$scope.gridOptions.api.setRowData(rowData2);
+```
+ 
