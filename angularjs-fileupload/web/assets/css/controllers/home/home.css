@@ -1,28 +1,37 @@
-p {
-  background: #95a5a6;
-  font: 20px "Microsoft YaHei";
-  padding: 20px;
-}
-#chart_panel {
-  overflow: hidden;
-}
-#canvas {
-  display: block;
-  border: 1px dotted #abb6bf;
-  margin: 0 auto;
-  padding: 0 auto;
-  float: left;
-  cursor: pointer;
-}
-.custom-cell {
-  line-height: 45px;
-  font-family: "sans-serif";
-  font-size: 14px;
+.drop-box {
+  background: #F8F8F8;
+  border: 5px dashed #DDD;
+  width: 170px;
   text-align: center;
+  padding: 5px;
+  margin-left: 5px;
+  float: left;
+  color: #666;
+  font-size: 14px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-.ag-row-selected {
-  border-bottom: 1px solid white;
+.upload {
+  margin-top: 20px;
 }
-.check_all {
-  padding-right: 5px;
+.submit-btn {
+  float: left;
+  margin-left: 50px;
+  width: 100px;
+  height: 40px;
+  line-height: 40px;
+  background: #48CFAD;
+  border: 0px;
+  border-radius: 5px;
+  font: 20px "Microsoft YaHei";
+  color: #fff;
+}
+.submit-btn:hover,
+.submit-btn:active {
+  background: #37BC9B;
+  border: 0px;
+}
+.selected-file .title {
+  font: 18px "Microsoft YaHei";
+  margin-top: 10px;
+  margin-left: 3px;
 }

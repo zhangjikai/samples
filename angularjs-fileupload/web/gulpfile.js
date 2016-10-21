@@ -22,7 +22,10 @@ gulp.task("move", function () {
             './bower_components/angular-translate/**/*angular*js',
             './bower_components/ag-grid/dist/**/*ag-grid*',
             './bower_components/ag-grid/dist/**/*.css',
-            './bower_components/hashmap/**/*.js'
+            './bower_components/hashmap/**/*.js',
+            './bower_components/ng-file-upload/**/*.js',
+            './bower_components/ng-file-upload/**/*.swf'
+
 
         ],
         {

@@ -1,16 +1,38 @@
-<div class="row" >
+<div class="row">
     <div class="col-lg-12">
-        <div class="row">
-            <div id = "chart_panel" class="col-lg-9">
-                <canvas id="canvas" chart-drct></canvas>
-            </div>
-            <div id="table_panel" class="table_panel col-lg-3">
-                <div ag-grid="gridOptions" class="ag-fresh" style="height:500px;"></div>
-            </div>
+        <div class="row upload">
 
+            <h3>单文件上传</h3>
+
+            <form name="form">
+                <div ngf-drop ngf-select ng-model="file" class="drop-box" name="file">{{file.name || "Select File"}}
+                </div>
+                <button class="submit-btn" ng-click="submitSingle()">submit</button>
+            </form>
         </div>
-        <!--<p>{{ home.username }}</p>-->
 
 
+        <div class="row upload col-lg-12">
+            <div class="row">
+                <h3>多文件上传</h3>
+
+                <form name="form">
+                    <div ngf-drop ngf-select ng-model="files" class="drop-box" ngf-multiple="true" name="file">
+                        {{"Select Files"}}
+                    </div>
+                    <button class="submit-btn" ng-click="submitMultiple()">submit</button>
+                </form>
+            </div>
+            <div class=" row selected-file">
+                <div class="title">已选文件: </div>
+                <div class="list">
+                    <ul>
+                        <li ng-repeat="f in files" >
+                            {{f.name}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

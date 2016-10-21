@@ -1,1 +1,1 @@
-angular.module('angularjs-demo', ['ngRoute', 'app.routes', 'app.core']);
+angular.module('angularjs-upload', ['ngRoute', 'app.routes', 'app.core']);
