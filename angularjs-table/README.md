@@ -75,8 +75,10 @@ $scope.gridOptions.api.getSelectedRows();
 $scope.gridOptions = {
     // column的有angularjs参数时要加此参数
     angularCompileRows: true,
-    rowHeight: 45,
     // 行高
+    rowHeight: 45,
+    // 设置只能通过checkbox选择
+    suppressRowClickSelection: true,
     columnDefs: columnDefs,
     rowData: rowData,
     // 数据选择模式
@@ -95,6 +97,10 @@ var columnDef = {
     cellClass: "custom-cell",
     // 是否是checkbox，如果只想要checkbox，可以设置 headerName: '',
     checkboxSelection: true,
+    // 是否固定列，['left', 'right']
+    pinned: true,
+    表格标题模板
+    headerCellTemplate: "<span><input type='checkbox' id='picb' style='width:20px;'></span>"
 }
 ```
 ### 更新部分数据
@@ -110,3 +116,66 @@ $scope.gridOptions.api.forEachNode( function(node) {
 $scope.gridOptions.api.refreshCells(updatedNodes, ['ratio']);
 ```
 
+### 添加全选
+* 配置 `columnDefs`
+```js
+var columnDefs = [
+    {
+        headerName: '',
+        checkboxSelection: true,
+        pinned: true,
+        width: 30,
+        cellClass: "custom-cell",
+        headerCellTemplate: headerCellRendererFunc
+    }
+];
+```
+
+* 编写 `headerCellRendererFunc` 函数 (使用了jquery)
+```js
+function headerCellRendererFunc(params) {
+    var cb = document.createElement('input');
+    cb.setAttribute('type', 'checkbox');
+    cb.setAttribute('checked', 'checked');
+    cb.setAttribute('id', '_check_all');
+    var eHeader = document.createElement('span');
+    eHeader.setAttribute("class", "check_all")
+    var eTitle = document.createTextNode(params.colDef.name);
+    eHeader.appendChild(cb);
+    eHeader.appendChild(eTitle);
+    cb.addEventListener('change', function (e) {
+        if ($(this)[0].checked) {
+            $scope.gridOptions.api.selectAll();
+        } else {
+            $scope.gridOptions.api.deselectAll();
+        }
+    });
+    return eHeader;
+}
+```
+
+* 设置样式
+```css
+.custom-cell {
+  line-height: 45px;
+  font-family: "sans-serif";
+  font-size: 14px;
+  text-align: center;
+}
+.check_all {
+  padding-right: 5px;
+}
+```
+
+* 判断是否应该选中全选按钮
+```js
+function selectionChange() {
+    ......
+    var checkbox = document.getElementById("_check_all");
+    if(selectedRows.length == ratioCopy.length) {
+         checkbox.checked = true;
+    } else {
+         checkbox.checked = false;
+    }
+}
+```
