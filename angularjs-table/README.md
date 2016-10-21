@@ -9,6 +9,7 @@
   * [GridOptions 参数](#gridoptions-%E5%8F%82%E6%95%B0)
   * [ColumnDefs 参数](#columndefs-%E5%8F%82%E6%95%B0)
   * [更新部分数据](#%E6%9B%B4%E6%96%B0%E9%83%A8%E5%88%86%E6%95%B0%E6%8D%AE)
+  * [添加全选](#%E6%B7%BB%E5%8A%A0%E5%85%A8%E9%80%89)
 
 <!-- tocstop -->
 
