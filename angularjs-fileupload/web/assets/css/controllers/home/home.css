@@ -1,0 +1,28 @@
+p {
+  background: #95a5a6;
+  font: 20px "Microsoft YaHei";
+  padding: 20px;
+}
+#chart_panel {
+  overflow: hidden;
+}
+#canvas {
+  display: block;
+  border: 1px dotted #abb6bf;
+  margin: 0 auto;
+  padding: 0 auto;
+  float: left;
+  cursor: pointer;
+}
+.custom-cell {
+  line-height: 45px;
+  font-family: "sans-serif";
+  font-size: 14px;
+  text-align: center;
+}
+.ag-row-selected {
+  border-bottom: 1px solid white;
+}
+.check_all {
+  padding-right: 5px;
+}
