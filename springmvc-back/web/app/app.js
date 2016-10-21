@@ -1,0 +1,1 @@
+angular.module('angularjs-demo', ['ngRoute', 'app.routes', 'app.core']);
