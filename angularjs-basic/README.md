@@ -101,3 +101,15 @@ angular.module('app.core').directive('helloDrct', function() {
 ```html
 <!-- directive: hello-drct -->
 ```
+
+### 初始隐藏元素
+**定义元素时加上ng-cloak**
+```html
+ <div ng-cloak ng-show="isShow"></div>
+```
+**设置css**
+```css
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+```
