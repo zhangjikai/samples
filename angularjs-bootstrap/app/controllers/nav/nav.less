@@ -12,7 +12,7 @@
     font-weight: 900;
     color: @white;
 
-    &:hover {
+    &:hover, &:link,&:visited{
       color: @white;
     }
   }
@@ -25,10 +25,22 @@
       font-family: @font-family-Yahei;
       font-weight: bold;
       font-size: @font-size-base;
+
+
+      &:active{
+        color: @white;
+      }
+      /*点击之后的颜色*/
+
+      &:focus {
+        color: @white;
+      }
       &:hover {
         color: @color-primary;
-
       }
+
+
+
     }
   }
 }

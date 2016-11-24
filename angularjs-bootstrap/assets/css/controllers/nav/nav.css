@@ -8,7 +8,9 @@
   font-weight: 900;
   color: #FFF;
 }
-.navbar-custom .navbar-brand:hover {
+.navbar-custom .navbar-brand:hover,
+.navbar-custom .navbar-brand:link,
+.navbar-custom .navbar-brand:visited {
   color: #FFF;
 }
 .navbar-custom .navbar-nav li > a {
@@ -16,6 +18,13 @@
   font-family: "Microsoft YaHei", "Tahoma", arial;
   font-weight: bold;
   font-size: 14px;
+  /*点击之后的颜色*/
+}
+.navbar-custom .navbar-nav li > a:active {
+  color: #FFF;
+}
+.navbar-custom .navbar-nav li > a:focus {
+  color: #FFF;
 }
 .navbar-custom .navbar-nav li > a:hover {
   color: #48CFAD;
