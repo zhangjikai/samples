@@ -1,0 +1,45 @@
+body,
+html {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+}
+.modal {
+  text-align: center;
+  padding: 0 !important;
+}
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
+}
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+.modal-header {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.modal-header .modal-title {
+  font-weight: bold;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+  line-height: 24px;
+}
+.modal-body {
+  border-bottom: none;
+}
+.modal-footer {
+  border-top: none;
+}
+/*.modal-title {
+  font-size: 1.5em;
+  color: #95a5a6;
+}
+
+.modal-header {
+  border-bottom: 1px solid #bdc3c7;
+  margin-bottom: 20px;
+}*/

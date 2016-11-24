@@ -1,0 +1,53 @@
+@import "../../common/common.less";
+
+body, html {
+  font-family: @font-family-base;
+  font-size: @font-size-base;
+}
+
+.modal {
+  text-align: center;
+  padding: 0 !important;
+
+  &:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -4px;
+  }
+}
+
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.modal-header {
+  border-bottom: none;
+  padding-bottom: 0;
+  .modal-title {
+    font-weight: bold;
+    font-family: @font-fmaily-sans;
+    line-height: @font-size-h3;
+  }
+}
+
+.modal-body{
+  border-bottom: none;
+}
+.modal-footer {
+  border-top: none;
+}
+
+/*.modal-title {
+  font-size: 1.5em;
+  color: #95a5a6;
+}
+
+.modal-header {
+  border-bottom: 1px solid #bdc3c7;
+  margin-bottom: 20px;
+}*/

@@ -1,0 +1,1 @@
+angular.module('angularjs-bootstrap', ['ngRoute', 'app.routes', 'app.core']);
