@@ -4,6 +4,7 @@ var less = require("gulp-less");
 var browserSync = require('browser-sync');
 var notify = require("gulp-notify");
 var plumber = require("gulp-plumber");
+var googleWebFonts = require("gulp-google-webfonts");
 
 gulp.task("move", function () {
     return gulp.src(
@@ -23,6 +24,12 @@ gulp.task("move", function () {
             base: './bower_components'
         }
     ).pipe(gulp.dest('lib'))
+});
+
+gulp.task("fonts", function() {
+    return gulp.src('./fonts.list')
+        .pipe(googleWebFonts({}))
+        .pipe(gulp.dest('fonts'));
 });
 
 gulp.task("webServer", function () {

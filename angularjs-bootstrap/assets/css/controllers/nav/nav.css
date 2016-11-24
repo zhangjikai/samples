@@ -1,0 +1,29 @@
+.navbar-inner {
+  -webkit-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.175);
+}
+.navbar-custom .navbar-brand {
+  font-family: Orbitron;
+  font-size: 30px;
+  font-weight: 900;
+  color: #FFF;
+}
+.navbar-custom .navbar-brand:hover {
+  color: #FFF;
+}
+.navbar-custom .navbar-nav li > a {
+  color: #FFF;
+  font-family: "Microsoft YaHei", "Tahoma", arial;
+  font-weight: bold;
+  font-size: 14px;
+}
+.navbar-custom .navbar-nav li > a:hover {
+  color: #48CFAD;
+}
+.navbar {
+  border-radius: 0px;
+}
+.navbar-custom {
+  background: #34495e;
+  border-color: #34495e;
+}

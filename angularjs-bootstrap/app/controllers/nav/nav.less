@@ -1,0 +1,42 @@
+@import "../../common/common.less";
+
+.navbar-inner {
+  -webkit-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.175);
+}
+
+.navbar-custom {
+  .navbar-brand {
+    font-family: Orbitron;
+    font-size: @font-size-h2;
+    font-weight: 900;
+    color: @white;
+
+    &:hover {
+      color: @white;
+    }
+  }
+}
+
+.navbar-custom{
+  .navbar-nav{
+    li>a{
+      color:  @white;
+      font-family: @font-family-Yahei;
+      font-weight: bold;
+      font-size: @font-size-base;
+      &:hover {
+        color: @color-primary;
+
+      }
+    }
+  }
+}
+
+.navbar {
+  border-radius: 0px;
+}
+.navbar-custom {
+  background: #34495e;;
+  border-color: #34495e;
+}

@@ -1,0 +1,32 @@
+@font-face {
+	font-family: 'Orbitron';
+	font-style: normal;
+	font-weight: 400;
+	src: url(Orbitron-normal-400.woff) format('woff');
+	unicode-range: U+0-10FFFF;
+}
+
+@font-face {
+	font-family: 'Orbitron';
+	font-style: normal;
+	font-weight: 500;
+	src: url(Orbitron-normal-500.woff) format('woff');
+	unicode-range: U+0-10FFFF;
+}
+
+@font-face {
+	font-family: 'Orbitron';
+	font-style: normal;
+	font-weight: 700;
+	src: url(Orbitron-normal-700.woff) format('woff');
+	unicode-range: U+0-10FFFF;
+}
+
+@font-face {
+	font-family: 'Orbitron';
+	font-style: normal;
+	font-weight: 900;
+	src: url(Orbitron-normal-900.woff) format('woff');
+	unicode-range: U+0-10FFFF;
+}
+
