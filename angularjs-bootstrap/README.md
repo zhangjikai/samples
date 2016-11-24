@@ -17,7 +17,7 @@
 angular.module('app.core', ['ngSanitize', 'ui.bootstrap', 'ngAnimate']);
 ```
 * 使用 `$uibModal` 打开Model
-```
+```js
 angular.module('app.core').controller('HomeCtrl', ['$scope', '$uibModal',function($scope, $uibModal) {
     var vm = this;
     vm.name = "zhangjk";
