@@ -77,3 +77,63 @@ angular.module('app.core').controller('ModelCtrl', ['$scope', '$uibModalInstance
   vertical-align: middle;
 }
 ```
+
+
+## 导航
+* html
+```html
+<nav class="navbar navbar-default navbar-inner navbar-custom" role="navigation" ng-controller="NavCtrl as nav">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" ng-click="isNavCollapsed = !isNavCollapsed">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">DEMO</a>
+    </div>
+    <div class="collapse navbar-collapse" uib-collapse="isNavCollapsed">
+        <ul class="nav navbar-nav">
+            <li><a href="#">菜单</a></li>
+        </ul>
+    </div>
+</nav>
+```
+* js
+```js
+angular.module('app.core').controller('NavCtrl', ['$scope', function ($scope) {
+    var vm = this;
+}]);
+```
+* css (仿照FlatUI)
+```css
+.navbar-inner {
+  -webkit-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.175);
+}
+.navbar-custom .navbar-brand {
+  font-family: Orbitron;
+  font-size: 30px;
+  font-weight: 900;
+  color: #FFF;
+}
+.navbar-custom .navbar-brand:hover {
+  color: #FFF;
+}
+.navbar-custom .navbar-nav li > a {
+  color: #FFF;
+  font-family: "Microsoft YaHei", "Tahoma", arial;
+  font-weight: bold;
+  font-size: 14px;
+}
+.navbar-custom .navbar-nav li > a:hover {
+  color: #48CFAD;
+}
+.navbar {
+  border-radius: 0px;
+}
+.navbar-custom {
+  background: #34495e;
+  border-color: #34495e;
+}
+```
