@@ -2,8 +2,6 @@
  * Created by ZhangJikai on 2017/2/19.
  */
 var gulp = require("gulp");
-//var webpack = require("webpack-stream");
-//var webpackConfig = require('./webpack.config.js');
 var webpack = require("webpack");
 var commonsPlugin = new webpack.optimize.CommonsChunkPlugin('common');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
@@ -40,6 +38,7 @@ gulp.task("webpack", function (callback) {
 
         module: {
             loaders: [
+                { test: /\.vue$/, loader: 'vue-loader' },
                 {test: /\.css$/, loader: ExtractTextPlugin.extract({fallback: "style-loader", use: "css-loader"})},
                 {
                     test: /\.js$/,
@@ -51,16 +50,24 @@ gulp.task("webpack", function (callback) {
                     loader: ExtractTextPlugin.extract({fallback: "style-loader", use: "css-loader!less-loader"})
                 },
 
-                {test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192'}
+                {test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192'},
+                {
+                    test: /\.(woff|woff2|eot|ttf|svg)(\?.*$|$)/,
+                    loader: 'url-loader?importLoaders=1&limit=1000&name=../fonts/[name].[ext]'
+                }
+
+                /*{ test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/, loader: 'url-loader?limit=50000&name=[path][name].[ext]'}*/
+
             ]
         },
 
         resolve: {
             alias: {
-                vue: path.join(__dirname, "/node_modules/vue/dist/vue.min.js")
+                vue: path.join(__dirname, "/node_modules/vue/dist/vue.min.js"),
+                fontAwesome: path.join(__dirname, "node_modules/font-awesome/css/font-awesome.min.css")
 
             },
-            extensions: ['.js', '.json', '.less']
+            extensions: ['.js', '.json', '.less', '.vue']
         }
     };
     webpack(config, function (err, stats) {

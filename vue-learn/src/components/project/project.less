@@ -1,0 +1,148 @@
+@import "../../less/variable";
+
+@project-width: 900px;
+@project-base-color: #27AE60;
+@project-bg: #fff;
+@project-height: 200px;
+@project-radius: 4px;
+@project-border-color: #95a0ab;
+@project-base-padding: @padding-base-horizontal;
+@project-padding-large: 20px;
+@project-padding-normal: @project-base-padding;
+@project-padding-small: 4px;
+
+@title-border-color: #ccc;
+@title-text-color: @project-base-color;
+
+@tag-height: 24px;
+@tag-bg: @project-base-color;
+@tag-color: #bbb;
+
+@url-color: #fff;
+
+.project {
+  width: @project-width;
+  min-height: 100px;
+  margin: 0 auto;
+  background: @project-bg;
+  border-left: @project-padding-small solid @project-base-color;
+  box-shadow: 0px 0px 8px 2px @project-border-color;
+  padding: 0;
+}
+
+@media screen and (max-width: @project-width) {
+  .project {
+    width: 100%;
+  }
+}
+
+.inner {
+  margin: 0;
+  width: auto;
+  padding: @project-padding-normal @project-padding-large;
+}
+
+.project-title {
+  margin: 0;
+  color: @title-text-color;
+  font-size: @font-size-h3;
+  text-align: left;
+  border-bottom: 1px solid @title-border-color;
+  padding-bottom: @padding-base-vertical;
+
+}
+
+.project-tag {
+  padding: @project-base-padding 0px;
+  color: #aaa;
+  font-size: @font-size-small;
+  i {
+    margin-right: @padding-small-vertical;
+  }
+  a {
+    text-decoration: none;
+    color: #bbb;
+    margin-right: @project-base-padding;
+    &:hover {
+      color: #4786D6;
+    }
+  }
+}
+
+.project-content {
+
+  p {
+    margin-top: 0;
+    font-size: @font-size-normal;
+    line-height: @line-height-small;
+  }
+}
+
+.project-url {
+
+  a {
+    display: inline-block;
+    height: @tag-height;
+    line-height: @tag-height;
+    position: relative;
+    font-size: @font-size-small;
+    margin-left: 20px;
+    padding: 0 @project-base-padding;
+    background: @tag-bg;
+    color: @url-color;
+    text-decoration: none;
+    border-radius: @border-radius-base;
+    box-shadow: 1px 1px 1px @tag-bg;
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+  //下面是实现标签效果，暂时不用了
+  /*a {
+    display: inline-block;
+    height: @tag-height;
+    line-height: @tag-height;
+    position: relative;
+    font-size: @font-size-small;
+    margin-left: 20px;
+    padding: 0 @project-base-padding;
+    background: @tag-bg;
+    color: @url-color;
+    text-decoration: none;
+    border-radius: 0px @border-radius-base @border-radius-base 0px;
+    box-shadow: 1px 1px 1px @tag-bg;
+    &:first-child{
+      margin-left: 0;
+    }
+    &:before {
+      content: "";
+      float: left;
+      position: absolute;
+      top: 0;
+      left: -12px;
+      width: 0;
+      height: 0;
+      border-color: transparent @tag-bg transparent transparent;
+      border-style: solid;
+      border-width: 12px 12px 12px 0;
+
+    }
+    &:after {
+      content: "";
+      position: absolute;
+      top: 10px;
+      left: 0;
+      float: left;
+      width: 4px;
+      height: 4px;
+      border-radius: 2px;
+      background: #fff;
+      box-shadow: -1px -1px 2px #aaa;
+    }
+
+    &:hover {
+
+    }
+  }*/
+}
+

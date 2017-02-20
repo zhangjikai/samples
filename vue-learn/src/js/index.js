@@ -1,10 +1,15 @@
 /**
  * Created by ZhangJikai on 2017/2/19.
  */
-require("../less/style.less");
-import Vue from 'vue'
 
-new Vue({
+import style from '../less/style.less'
+import fontAwesome from 'fontAwesome'
+import Vue from 'vue'
+import project from '../components/project/project.vue'
+
+Vue.component("project", project);
+
+var vm = new Vue({
     el: '#app',
     data: {
         message: "runoob"
@@ -12,6 +17,11 @@ new Vue({
     filters: {
         capitalize: function(value) {
             return value.charAt(0).toUpperCase() + value.slice(1);
+        }
+    },
+    methods: {
+        greet: function(event) {
+            alert("Hello");
         }
     }
 });
