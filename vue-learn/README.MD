@@ -56,7 +56,7 @@ gulp.task('default', ['browserSync', 'watch', 'webpack']);
  npm install --save-dev extract-text-webpack-plugin@beta
  ```
 webpack 2 配置的时候也略有不同：
-```
+```js
 {
     plugins: [commonsPlugin, new ExtractTextPlugin("../css/[name].css")],
 
@@ -79,6 +79,33 @@ webpack 2 配置的时候也略有不同：
 }
 ```
 
+
+### 压缩文件
+压缩js，使用 `UglifyJsPlugin` 即可，压缩 css 可以使用 `optimize-css-assets-webpack-plugin`，下面是配置代码：
+```js
+var uglifyJsPlugin = new webpack.optimize.UglifyJsPlugin({
+    compress: {
+        warnings: false
+    }
+});
+var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+//.....
+var config = {
+    plugins: [
+
+    uglifyJsPlugin, new OptimizeCssAssetsPlugin({
+        assetNameRegExp: /\.css$/g,
+        cssProcessor: require('cssnano'),
+        cssProcessorOptions: {
+            discardComments: {
+                removeAll: true
+            }
+        },
+        canPrint: true
+    })],
+}
+```
+
 ## ES6 语法
 ### export
 `export default` 默认导出，不需要指定变量名，默认是文件名。
@@ -86,3 +113,48 @@ webpack 2 配置的时候也略有不同：
 ## Vue
 ### Vue文件中导入外部文件
 如果在 Vue 文件中导入了样式文件，如果想要提取出来，需要配置 Vue 的loader，具体方式还没查
+
+### 缩写
+Vue.js 为两个最为常用的指令提供了特别的缩写：
+
+#### `v-bind` 缩写
+```html
+<!-- 完整语法 -->
+<a v-bind:href="url"></a>
+<!-- 缩写 -->
+<a :href="url"></a>
+```
+
+#### `v-on` 缩写
+```html
+<!-- 完整语法 -->
+<a v-on:click="doSomething"></a>
+<!-- 缩写 -->
+<a @click="doSomething"></a>
+```
+
+### 向单文件组件中传输
+* 使用 `v-bind:prop` 指令即可，可以简写为 `:prop`。首先在 index.js 里定义数据：
+```js
+var vm = new Vue({
+    el: '#app',
+    data: {
+        projects: [{id:1}, {id:2}]
+    },
+});
+```
+* 在组件文件中定义要接受数据的变量名，并使用接受的数据
+```js
+export default {
+    props: ["project"]
+}
+```
+```html
+ <p>{{project.id}}</p>
+```
+* 在 html 添加组件标签，并向组件传入数据对象，这里使用 for 指令创建了一个循环
+```html
+<div id="app">
+    <project v-for="project in projects" :project="project"></project>
+</div>
+```

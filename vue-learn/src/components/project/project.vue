@@ -1,13 +1,13 @@
 <template>
-    <!--<div class="project">
+    <div class="project">
         <div class="inner">
             <div class="project-title">{{project.title}}</div>
             <div class="project-tag">
                 <i class="fa fa-tags" aria-hidden="true"></i>
                 <a href="#" v-for="tag in project.tags">{{tag}}</a>
             </div>
-            <div class="project-content">
-                <p>{{project.content}}</p>
+            <div class="project-content" v-html="project.content">
+
             </div>
             <div class="project-url">
                 <a :href="project.source" v-if="project.source !== null" target="_blank">源码</a>
@@ -15,9 +15,9 @@
             </div>
         </div>
 
-    </div>-->
+    </div>
 
-    <div class="project">
+    <!--<div class="project">
         <div class="inner">
             <div class="project-title">{{project.title}}</div>
             <div class="project-tag">
@@ -53,15 +53,12 @@
             </div>
         </div>
 
-    </div>
+    </div>-->
 </template>
 
 <script>
     export default {
-        props: ['project'],
-        data: {
-            project: {}
-        }
+        props: ["project"]
 
     }
 </script>

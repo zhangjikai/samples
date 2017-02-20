@@ -167,10 +167,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = {
-    props: ['project'],
-    data: {
-        project: {}
-    }
+    props: ["project"]
 
 };
 
@@ -321,7 +318,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "href": "#"
       }
     }, [_vm._v(_vm._s(tag))])
-  })], 2), _vm._v(" "), _vm._m(0), _vm._v(" "), _c('div', {
+  })], 2), _vm._v(" "), _c('div', {
+    staticClass: "project-content",
+    domProps: {
+      "innerHTML": _vm._s(_vm.project.content)
+    }
+  }), _vm._v(" "), _c('div', {
     staticClass: "project-url"
   }, [(_vm.project.source !== null) ? _c('a', {
     attrs: {
@@ -334,31 +336,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "target": "_blank"
     }
   }, [_vm._v("在线地址")]) : _vm._e()])])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "project-content"
-  }, [_c('ul', [_c('li', [_c('code', [_vm._v("Prism.js")]), _vm._v(" / "), _c('code', [_vm._v("Highlight.js")]), _vm._v(" 代码高亮")]), _vm._v(" "), _c('li', [_vm._v("自动生成目录")]), _vm._v(" "), _c('li', [_vm._v("本地图片显示")]), _vm._v(" "), _c('li', [_vm._v("导出 Html （包含样式）\n\n                    "), _c('ul', [_c('li', [_vm._v("BackToTop")]), _vm._v(" "), _c('li', [_vm._v("多说")])])]), _vm._v(" "), _c('li', [_vm._v("扩展功能\n\n                    "), _c('ul', [_c('li', [_vm._v("Toto 列表")]), _vm._v(" "), _c('li', [_c('a', {
-    attrs: {
-      "href": "https://github.com/mathjax/MathJax"
-    }
-  }, [_vm._v("MathJax")])]), _vm._v(" "), _c('li', [_c('a', {
-    attrs: {
-      "href": "https://github.com/bramp/js-sequence-diagrams"
-    }
-  }, [_vm._v("时序图 (Js sequence diagrams)")])]), _vm._v(" "), _c('li', [_c('a', {
-    attrs: {
-      "href": "https://github.com/Ranks/emojify.js"
-    }
-  }, [_vm._v("Emoji (Emojify.js)")])]), _vm._v(" "), _c('li', [_c('a', {
-    attrs: {
-      "href": "http://echarts.baidu.com/"
-    }
-  }, [_vm._v("ECharts")])]), _vm._v(" "), _c('li', [_c('a', {
-    attrs: {
-      "href": "http://fancybox.net/"
-    }
-  }, [_vm._v("Fancybox")])])])])])])
-}]}
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -689,31 +667,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 __WEBPACK_IMPORTED_MODULE_2_vue___default.a.component("project", __WEBPACK_IMPORTED_MODULE_3__components_project_project_vue___default.a);
+var markdownReaderDesc = "* 堆的创建、插入、删除、堆排序演示\n" + "* 最大堆与最小堆切换\n" + "* 单步执行与自动执行\n" + "* 可调节演示速度\n" + "* 两种演示方式切换\n";
+markdownReaderDesc = __WEBPACK_IMPORTED_MODULE_4__node_modules_marked_marked_min_js___default()(markdownReaderDesc);
 
 var data = [{
     "title": "Onlime Markdown Reader",
     "tags": ["JS", "Tool"],
-    "content": "Prism.js / Highlight.js 代码高亮, 自动生成目录, 本地图片显示, 导出 Html （包含样式）,BackToTop, 多说",
+    "content": markdownReaderDesc,
+
     "source": "https://github.com/zhangjikai/online-markdown-reader",
     "url": "http://markdown.zhangjikai.com/"
 }];
-
-console.log(__WEBPACK_IMPORTED_MODULE_4__node_modules_marked_marked_min_js___default()(data[0].content));
 
 var vm = new __WEBPACK_IMPORTED_MODULE_2_vue___default.a({
     el: '#app',
     data: {
         projects: data
-    },
-    filters: {
-        capitalize: function (value) {
-            return value.charAt(0).toUpperCase() + value.slice(1);
-        }
-    },
-    methods: {
-        greet: function (event) {
-            alert("Hello");
-        }
     }
 });
 
