@@ -1,18 +1,55 @@
 <template>
-    <div class="project">
+    <!--<div class="project">
         <div class="inner">
-            <div class="project-title">在线工具</div>
+            <div class="project-title">{{project.title}}</div>
             <div class="project-tag">
                 <i class="fa fa-tags" aria-hidden="true"></i>
-                <a href="#">Java</a>
-                <a href="#">Tool</a>
+                <a href="#" v-for="tag in project.tags">{{tag}}</a>
             </div>
             <div class="project-content">
-                <p>BlueLake主题写了有一段时间了，经常会有朋友发消息给我问一些配置的问题，这篇博文主要也是为了解决这些问题。主题以简洁轻量自居(实则简陋)，去掉了Jquery和Fancybox,用原生JS实现站内搜索功能和回到顶部效果。这个主题只是一个小小的雏形，期待您来帮助它成长。</p>
+                <p>{{project.content}}</p>
             </div>
             <div class="project-url">
-                <a href="#">GitHub</a>
-                <a href="#">在线地址</a>
+                <a :href="project.source" v-if="project.source !== null" target="_blank">源码</a>
+                <a :href="project.url" v-if="project.url !== null" target="_blank">在线地址</a>
+            </div>
+        </div>
+
+    </div>-->
+
+    <div class="project">
+        <div class="inner">
+            <div class="project-title">{{project.title}}</div>
+            <div class="project-tag">
+                <i class="fa fa-tags" aria-hidden="true"></i>
+                <a href="#" v-for="tag in project.tags">{{tag}}</a>
+            </div>
+            <div class="project-content">
+                <ul>
+                    <li><code>Prism.js</code> / <code>Highlight.js</code> 代码高亮</li>
+                    <li>自动生成目录</li>
+                    <li>本地图片显示</li>
+                    <li>导出 Html （包含样式）
+
+                        <ul>
+                            <li>BackToTop</li>
+                            <li>多说</li>
+                        </ul></li>
+                    <li>扩展功能
+
+                        <ul>
+                            <li>Toto 列表</li>
+                            <li><a href="https://github.com/mathjax/MathJax">MathJax</a> </li>
+                            <li><a href="https://github.com/bramp/js-sequence-diagrams">时序图 (Js sequence diagrams)</a></li>
+                            <li><a href="https://github.com/Ranks/emojify.js">Emoji (Emojify.js)</a></li>
+                            <li><a href="http://echarts.baidu.com/">ECharts</a></li>
+                            <li><a href="http://fancybox.net/">Fancybox</a></li>
+                        </ul></li>
+                </ul>
+            </div>
+            <div class="project-url">
+                <a :href="project.source" v-if="project.source !== null" target="_blank">源码</a>
+                <a :href="project.url" v-if="project.url !== null" target="_blank">在线地址</a>
             </div>
         </div>
 
@@ -20,7 +57,13 @@
 </template>
 
 <script>
-    export default {}
+    export default {
+        props: ['project'],
+        data: {
+            project: {}
+        }
+
+    }
 </script>
 
 <style lang="less">

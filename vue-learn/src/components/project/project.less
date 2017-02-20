@@ -21,13 +21,15 @@
 @url-color: #fff;
 
 .project {
+  font-family: "ubuntu", "Tahoma", "Microsoft YaHei", arial, sans-serif;
   width: @project-width;
   min-height: 100px;
-  margin: 0 auto;
+  margin: 0 auto @project-padding-large auto;
   background: @project-bg;
   border-left: @project-padding-small solid @project-base-color;
   box-shadow: 0px 0px 8px 2px @project-border-color;
   padding: 0;
+  //margin-bottom: @project-padding-large;
 }
 
 @media screen and (max-width: @project-width) {
@@ -76,6 +78,57 @@
     font-size: @font-size-normal;
     line-height: @line-height-small;
   }
+
+  li {
+    font-size: @font-size-normal;
+    line-height: @line-height-small;
+  }
+
+  code, pre {
+    font-family: Consolas, Monaco, Andale Mono, monospace;
+    background-color: #f7f7f7;
+    color: inherit;
+  }
+
+  code {
+    font-family: Consolas, Monaco, Andale Mono, monospace;
+    margin: 0 2px;
+  }
+
+  pre {
+    font-family: Consolas, Monaco, Andale Mono, monospace;
+    line-height: 1.2em;
+    overflow: auto;
+    padding: 6px 10px;
+    /*border-left: 5px solid #6CE26C;*/
+  }
+
+  pre > code {
+    font-family: Consolas, Monaco, Andale Mono, monospace;
+    border: 0;
+    display: inline;
+    max-width: initial;
+    padding: 0;
+    margin: 0;
+    overflow: initial;
+    line-height: 1.3em;
+    font-size: 1em;
+    white-space: pre;
+    background: 0 0;
+  }
+
+  code {
+    color: #666555;
+  }
+
+  a{
+    text-decoration: none;
+    color: @project-base-color;
+    &:hover {
+      //text-decoration: underline;
+    }
+  }
+
 }
 
 .project-url {

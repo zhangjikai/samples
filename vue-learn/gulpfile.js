@@ -4,10 +4,15 @@
 var gulp = require("gulp");
 var webpack = require("webpack");
 var commonsPlugin = new webpack.optimize.CommonsChunkPlugin('common');
+var uglifyJsPlugin = new webpack.optimize.UglifyJsPlugin({
+    compress: {
+        warnings: false
+    }
+});
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var browserSync = require('browser-sync');
-var path = require("path")
-
+var path = require("path");
+var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 gulp.task('browserSync', function () {
     browserSync({
@@ -26,7 +31,17 @@ gulp.task("webpack", function (callback) {
     //webpack配置文件
     var config = {
         watch: true,
-        plugins: [commonsPlugin, new ExtractTextPlugin("../css/[name].css")],
+        plugins: [
+            commonsPlugin,
+            new ExtractTextPlugin("../css/[name].css")
+            //uglifyJsPlugin,
+            //new OptimizeCssAssetsPlugin({
+            //    assetNameRegExp: /\.css$/g,
+            //    cssProcessor: require('cssnano'),
+            //    cssProcessorOptions: { discardComments: {removeAll: true } },
+            //    canPrint: true
+            //})
+        ],
         entry: {
             index: __dirname + '/src/js/index.js'
         },
@@ -38,7 +53,7 @@ gulp.task("webpack", function (callback) {
 
         module: {
             loaders: [
-                { test: /\.vue$/, loader: 'vue-loader' },
+                {test: /\.vue$/, loader: 'vue-loader'},
                 {test: /\.css$/, loader: ExtractTextPlugin.extract({fallback: "style-loader", use: "css-loader"})},
                 {
                     test: /\.js$/,
@@ -64,8 +79,8 @@ gulp.task("webpack", function (callback) {
         resolve: {
             alias: {
                 vue: path.join(__dirname, "/node_modules/vue/dist/vue.min.js"),
-                fontAwesome: path.join(__dirname, "node_modules/font-awesome/css/font-awesome.min.css")
-
+                fontAwesome: path.join(__dirname, "node_modules/font-awesome/css/font-awesome.min.css"),
+                marked: path.join(__dirname, "node_")
             },
             extensions: ['.js', '.json', '.less', '.vue']
         }
