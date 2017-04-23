@@ -2,6 +2,7 @@
 body {
   background: #F5F7FA;
   padding: 6px;
+  z-index: 2;
 }
 img {
   max-width: 100%;

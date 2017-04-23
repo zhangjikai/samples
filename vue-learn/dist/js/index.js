@@ -165,10 +165,76 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = {
-    props: ["project"]
+    props: ["project"],
+    data: function () {
+        return {
+            isExpand: false
+        };
+    },
+    methods: {
 
+        expand: function () {
+            var vm = this;
+            //console.log(vm.isExpand);
+            vm.isExpand = !vm.isExpand;
+            var content = document.querySelector("#content");
+            console.log(content);
+            if (vm.isExpand) {
+                var contentCopy = document.querySelector('#content-copy');
+                content.style.height = contentCopy.clientHeight + 'px';
+            } else {
+
+                content.style.height = "0px";
+            }
+            //console.log(document.querySelector('#content-copy').clientHeight)
+        }
+    }
 };
 
 /***/ }),
@@ -180,7 +246,7 @@ exports = module.exports = __webpack_require__(8)();
 
 
 // module
-exports.push([module.i, "/** extract from bootstrap*/\n.project {\n  font-family: \"ubuntu\", \"Tahoma\", \"Microsoft YaHei\", arial, sans-serif;\n  width: 900px;\n  min-height: 100px;\n  margin: 0 auto 20px auto;\n  background: #fff;\n  border-left: 4px solid #27AE60;\n  box-shadow: 0px 0px 8px 2px #95a0ab;\n  padding: 0;\n}\n@media screen and (max-width: 900px) {\n.project {\n    width: 100%;\n}\n}\n.inner {\n  margin: 0;\n  width: auto;\n  padding: 12px 20px;\n}\n.project-title {\n  margin: 0;\n  color: #27AE60;\n  font-size: 24px;\n  text-align: left;\n  border-bottom: 1px solid #ccc;\n  padding-bottom: 6px;\n}\n.project-tag {\n  padding: 12px 0px;\n  color: #aaa;\n  font-size: 12px;\n}\n.project-tag i {\n  margin-right: 5px;\n}\n.project-tag a {\n  text-decoration: none;\n  color: #bbb;\n  margin-right: 12px;\n}\n.project-tag a:hover {\n  color: #4786D6;\n}\n.project-content p {\n  margin-top: 0;\n  font-size: 16px;\n  line-height: 1.5;\n}\n.project-content li {\n  font-size: 16px;\n  line-height: 1.5;\n}\n.project-content code,\n.project-content pre {\n  font-family: Consolas, Monaco, Andale Mono, monospace;\n  background-color: #f7f7f7;\n  color: inherit;\n}\n.project-content code {\n  font-family: Consolas, Monaco, Andale Mono, monospace;\n  margin: 0 2px;\n}\n.project-content pre {\n  font-family: Consolas, Monaco, Andale Mono, monospace;\n  line-height: 1.2em;\n  overflow: auto;\n  padding: 6px 10px;\n  /*border-left: 5px solid #6CE26C;*/\n}\n.project-content pre > code {\n  font-family: Consolas, Monaco, Andale Mono, monospace;\n  border: 0;\n  display: inline;\n  max-width: initial;\n  padding: 0;\n  margin: 0;\n  overflow: initial;\n  line-height: 1.3em;\n  font-size: 1em;\n  white-space: pre;\n  background: 0 0;\n}\n.project-content code {\n  color: #666555;\n}\n.project-content a {\n  text-decoration: none;\n  color: #27AE60;\n}\n.project-url {\n  /*a {\n    display: inline-block;\n    height: @tag-height;\n    line-height: @tag-height;\n    position: relative;\n    font-size: @font-size-small;\n    margin-left: 20px;\n    padding: 0 @project-base-padding;\n    background: @tag-bg;\n    color: @url-color;\n    text-decoration: none;\n    border-radius: 0px @border-radius-base @border-radius-base 0px;\n    box-shadow: 1px 1px 1px @tag-bg;\n    &:first-child{\n      margin-left: 0;\n    }\n    &:before {\n      content: \"\";\n      float: left;\n      position: absolute;\n      top: 0;\n      left: -12px;\n      width: 0;\n      height: 0;\n      border-color: transparent @tag-bg transparent transparent;\n      border-style: solid;\n      border-width: 12px 12px 12px 0;\n\n    }\n    &:after {\n      content: \"\";\n      position: absolute;\n      top: 10px;\n      left: 0;\n      float: left;\n      width: 4px;\n      height: 4px;\n      border-radius: 2px;\n      background: #fff;\n      box-shadow: -1px -1px 2px #aaa;\n    }\n\n    &:hover {\n\n    }\n  }*/\n}\n.project-url a {\n  display: inline-block;\n  height: 24px;\n  line-height: 24px;\n  position: relative;\n  font-size: 12px;\n  margin-left: 20px;\n  padding: 0 12px;\n  background: #27AE60;\n  color: #fff;\n  text-decoration: none;\n  border-radius: 4px;\n  box-shadow: 1px 1px 1px #27AE60;\n}\n.project-url a:first-child {\n  margin-left: 0;\n}\n", ""]);
+exports.push([module.i, "/** extract from bootstrap*/\n.project {\n  font-family: \"ubuntu\", \"Tahoma\", \"Microsoft YaHei\", arial, sans-serif;\n  width: 900px;\n  min-height: 100px;\n  margin: 0 auto 20px auto;\n  background: #fff;\n  box-shadow: 7px 7px 7px #E6E9ED;\n  padding: 0;\n}\n@media screen and (max-width: 900px) {\n.project {\n    width: 100%;\n}\n}\n.inner {\n  margin: 0;\n  width: auto;\n  padding: 12px 20px;\n}\n.project-title {\n  margin: 0;\n  color: #41b883;\n  font-size: 24px;\n  border-bottom: 1px solid #ccc;\n  padding-bottom: 6px;\n}\n.project-title span {\n  text-align: left;\n  font-size: 24px;\n}\n.project-title i {\n  float: right;\n  cursor: pointer;\n}\n.project-tag {\n  padding: 12px 0px;\n  color: #aaa;\n  font-size: 12px;\n}\n.project-tag i {\n  margin-right: 5px;\n}\n.project-tag a {\n  text-decoration: none;\n  color: #bbb;\n  margin-right: 12px;\n}\n.project-tag a:hover {\n  color: #4786D6;\n}\n.project-desc {\n  margin-bottom: 12px;\n}\n.project-content-copy {\n  position: absolute;\n  visibility: hidden;\n  z-index: 0;\n}\n.project-content {\n  transition: height 0.5s ease-in;\n  height: 0px;\n  overflow: hidden;\n}\np {\n  margin-top: 0;\n  font-size: 16px;\n  line-height: 1.5;\n}\nli {\n  font-size: 16px;\n  line-height: 1.5;\n}\ncode,\npre {\n  font-family: Consolas, Monaco, Andale Mono, monospace;\n  background-color: #f7f7f7;\n  color: inherit;\n}\ncode {\n  font-family: Consolas, Monaco, Andale Mono, monospace;\n  margin: 0 2px;\n}\npre {\n  font-family: Consolas, Monaco, Andale Mono, monospace;\n  line-height: 1.2em;\n  overflow: auto;\n  padding: 6px 10px;\n  /*border-left: 5px solid #6CE26C;*/\n}\npre > code {\n  font-family: Consolas, Monaco, Andale Mono, monospace;\n  border: 0;\n  display: inline;\n  max-width: initial;\n  padding: 0;\n  margin: 0;\n  overflow: initial;\n  line-height: 1.3em;\n  font-size: 1em;\n  white-space: pre;\n  background: 0 0;\n}\ncode {\n  color: #666555;\n}\na {\n  text-decoration: none;\n  color: #41b883;\n}\n.project-url {\n  /*a {\n    display: inline-block;\n    height: @tag-height;\n    line-height: @tag-height;\n    position: relative;\n    font-size: @font-size-small;\n    margin-left: 20px;\n    padding: 0 @project-base-padding;\n    background: @tag-bg;\n    color: @url-color;\n    text-decoration: none;\n    border-radius: 0px @border-radius-base @border-radius-base 0px;\n    box-shadow: 1px 1px 1px @tag-bg;\n    &:first-child{\n      margin-left: 0;\n    }\n    &:before {\n      content: \"\";\n      float: left;\n      position: absolute;\n      top: 0;\n      left: -12px;\n      width: 0;\n      height: 0;\n      border-color: transparent @tag-bg transparent transparent;\n      border-style: solid;\n      border-width: 12px 12px 12px 0;\n\n    }\n    &:after {\n      content: \"\";\n      position: absolute;\n      top: 10px;\n      left: 0;\n      float: left;\n      width: 4px;\n      height: 4px;\n      border-radius: 2px;\n      background: #fff;\n      box-shadow: -1px -1px 2px #aaa;\n    }\n\n    &:hover {\n\n    }\n  }*/\n}\n.project-url .project-link {\n  display: inline-block;\n  font: 700 11px/14px 'Helvetica Neue', Helvetica, Arial, sans-serif;\n  background-color: #eee;\n  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fcfcfc), color-stop(100%, #eee));\n  background-image: -webkit-linear-gradient(top, #fcfcfc 0, #eee 100%);\n  background-image: -moz-linear-gradient(top, #fcfcfc 0, #eee 100%);\n  background-image: -ms-linear-gradient(top, #fcfcfc 0, #eee 100%);\n  background-image: -o-linear-gradient(top, #fcfcfc 0, #eee 100%);\n  background-image: linear-gradient(to bottom, #fcfcfc 0, #eee 100%);\n  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fcfcfc', endColorstr='#eeeeee', GradientType=0);\n  background-repeat: no-repeat;\n  border: 1px solid #d5d5d5;\n  padding: 2px 5px 2px 4px;\n  color: #333;\n  text-decoration: none;\n  text-shadow: 0 1px 0 #fff;\n  white-space: nowrap;\n  cursor: pointer;\n  border-radius: 3px;\n  margin-top: 7px;\n  margin-right: 7px;\n}\n.project-url .project-link .custom-fa {\n  font-weight: bold;\n}\n.project-url iframe {\n  margin-top: 7px;\n  vertical-align: bottom;\n  margin-right: 7px;\n}\n.expand {\n  float: right;\n  transition: width 0.5s ease-in;\n  width: 70px;\n  text-align: center;\n}\n.expand i {\n  margin-left: 2px;\n  margin-right: 2px;\n}\n", ""]);
 
 // exports
 
@@ -304,8 +370,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('div', {
     staticClass: "inner"
   }, [_c('div', {
+    staticClass: "project-header"
+  }, [_c('div', {
     staticClass: "project-title"
-  }, [_vm._v(_vm._s(_vm.project.title))]), _vm._v(" "), _c('div', {
+  }, [_c('span', [_vm._v(_vm._s(_vm.project.title))])])]), _vm._v(" "), _c('div', {
     staticClass: "project-tag"
   }, [_c('i', {
     staticClass: "fa fa-tags",
@@ -320,22 +388,91 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_vm._v(_vm._s(tag))])
   })], 2), _vm._v(" "), _c('div', {
     staticClass: "project-content",
+    attrs: {
+      "id": "content"
+    }
+  }, [_c('div', {
+    staticClass: "main",
     domProps: {
       "innerHTML": _vm._s(_vm.project.content)
     }
-  }), _vm._v(" "), _c('div', {
-    staticClass: "project-url"
-  }, [(_vm.project.source !== null) ? _c('a', {
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "project-content-copy",
     attrs: {
-      "href": _vm.project.source,
-      "target": "_blank"
+      "id": "content-copy"
     }
-  }, [_vm._v("源码")]) : _vm._e(), _vm._v(" "), (_vm.project.url !== null) ? _c('a', {
+  }, [_c('div', {
+    staticClass: "main",
+    domProps: {
+      "innerHTML": _vm._s(_vm.project.content)
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "project-url"
+  }, [(_vm.project.url !== null) ? _c('a', {
+    staticClass: "project-link",
     attrs: {
       "href": _vm.project.url,
       "target": "_blank"
     }
-  }, [_vm._v("在线地址")]) : _vm._e()])])])
+  }, [_c('i', {
+    staticClass: "fa fa-home custom-fa",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }), _vm._v(" "), _c('span', [_vm._v("Home")])]) : _vm._e(), _vm._v(" "), (_vm.project.source !== null) ? _c('a', {
+    staticClass: "project-link",
+    attrs: {
+      "href": _vm.project.source,
+      "target": "_blank"
+    }
+  }, [_c('i', {
+    staticClass: "fa fa-code custom-fa",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }), _vm._v(" "), _c('span', [_vm._v("Code")])]) : _vm._e(), _vm._v(" "), _c('a', {
+    staticClass: "github-button",
+    staticStyle: {
+      "display": "none"
+    },
+    attrs: {
+      "href": "https://github.com/zhangjikai/gitbook-use",
+      "data-icon": "octicon-star",
+      "data-count-href": "/zhangjikai/gitbook-use/stargazers",
+      "data-count-api": "/repos/zhangjikai/gitbook-use#stargazers_count",
+      "data-count-aria-label": "# stargazers on GitHub",
+      "aria-label": "Star zhangjikai/gitbook-use on GitHub"
+    }
+  }, [_vm._v("Star")]), _vm._v(" "), _c('a', {
+    staticClass: "github-button",
+    staticStyle: {
+      "display": "none"
+    },
+    attrs: {
+      "href": "https://github.com/zhangjikai/gitbook-use/fork",
+      "data-icon": "octicon-repo-forked",
+      "data-count-href": "/zhangjikai/gitbook-use/network",
+      "data-count-api": "/repos/zhangjikai/gitbook-use#forks_count",
+      "data-count-aria-label": "# forks on GitHub",
+      "aria-label": "Fork zhangjikai/gitbook-use on GitHub"
+    }
+  }, [_vm._v("Fork")]), _vm._v(" "), (_vm.project.source !== null) ? _c('a', {
+    staticClass: "project-link expand",
+    attrs: {
+      "href": "javascript:void(0)"
+    },
+    on: {
+      "click": _vm.expand
+    }
+  }, [_c('i', {
+    staticClass: "fa ",
+    class: {
+      'fa-angle-double-down': !_vm.isExpand, 'fa-angle-double-up': _vm.isExpand
+    },
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }), _vm._v(" "), _c('span', [_vm._v(_vm._s(_vm.isExpand ? "收起" : "详细介绍"))])]) : _vm._e()])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -666,17 +803,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+
 __WEBPACK_IMPORTED_MODULE_2_vue___default.a.component("project", __WEBPACK_IMPORTED_MODULE_3__components_project_project_vue___default.a);
+
 var markdownReaderDesc = "* 堆的创建、插入、删除、堆排序演示\n" + "* 最大堆与最小堆切换\n" + "* 单步执行与自动执行\n" + "* 可调节演示速度\n" + "* 两种演示方式切换\n";
 markdownReaderDesc = __WEBPACK_IMPORTED_MODULE_4__node_modules_marked_marked_min_js___default()(markdownReaderDesc);
 
 var data = [{
-    "title": "Onlime Markdown Reader",
+    "title": "Online Markdown Reader",
     "tags": ["JS", "Tool"],
     "content": markdownReaderDesc,
-
     "source": "https://github.com/zhangjikai/online-markdown-reader",
-    "url": "http://markdown.zhangjikai.com/"
+    "url": "http://markdown.zhangjikai.com/",
+    "desc": "测试一下效果"
 }];
 
 var vm = new __WEBPACK_IMPORTED_MODULE_2_vue___default.a({
